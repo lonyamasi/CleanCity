@@ -7,6 +7,7 @@
   - *Bug Tracking:* Jira Cloud  
   - *Accessibility:* Axe DevTools, Wave  
   - *Performance:* Lighthouse, Chrome DevTools  
+  
   - *Testing:* BrowserStack / real devices  
   - *Reporting:* Jira Dashboards or Google Sheets  
 
