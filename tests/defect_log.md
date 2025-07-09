@@ -5,7 +5,7 @@
  Defect Log Format  
 
 Each defect log will include:  
-- **Test Case ID & Title**  
+- **Defect log ID & Title**  
 - **Related Test Case**
 - **Description** 
 - **Test Steps**  
@@ -16,9 +16,10 @@ Each defect log will include:
 
 ---
 
-## DF1: Waste Management
-### DF-1.1: Application accepts past dates and even last year for waste pickup scheduling
-**Related Test Case**: TC-2.1**Validate date must be at least 24h in future  
+## DF: Waste Management
+### DFL-1: Main Operations around waste pickup and handling
+### DFL-1.1: Application accepts past dates and even last year for waste pickup scheduling
+**Related Test Case**: TC-2.1 **Validate date must be at least 24h in future**  
 
 ### Description  
 System allows a user to submit multiple identical pickup requests with the same user, location, and date. This can result in overbooking or misallocated resources in the pickup schedule.
@@ -39,7 +40,8 @@ System should block the second request and alert the user that a request already
 System accepts the duplicate request and assigns it a new request ID.
 
 ### Evidence  
-![Screenshot](image-20250707-123723.png)
+[DFL-1.1](https://github.com/user-attachments/assets/67d9637a-7cf5-4d9c-90d2-e03dd0a4b872)
+
 
 ### Severity/Priority  
 - **Severity**: Major  
