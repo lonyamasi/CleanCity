@@ -174,7 +174,7 @@ Repeat process now with email as - Clara@gmail.com
 ## TC2: Waste Management Testing
 ### TCS-2: Main Operations around waste pickup and handling
 
-### TC-2.1**Validate date must be at least 24h in future
+### TC-2.1 Validate date must be at least 24h in future
 **Objective:** Ensure that system only allows dates atleast 24h in the future
 
 **Steps to Reproduce**:
@@ -202,7 +202,7 @@ Repeat process now with email as - Clara@gmail.com
 
 
 
-### TC-2.2**Duplicate Pickup Requests for Same User, Date, and Location
+### TC-2.2 Duplicate Pickup Requests for Same User, Date, and Location
 **Objective**: Test that the system does not allow a user to submit multiple pickup requests for the same location and date, ensuring no scheduling conflicts or accidental duplicates
 
 **Steps to Reproduce**:
@@ -286,8 +286,112 @@ No cancel button or logic is implemented
  **Severity/Priority (if failed)** : Major
 
 
+---
+## TC-3: Dashboard & Analytics Testing
+### TC-3.1: Gamification Badge & Points System
+### **Test Case ID & Title: TC-CLEANCITY-55**
+**Objective** : Ensure eligible actions trigger points and badge unlocks as achievements.
+**Test Steps**: 
+- Log in with a test user credential.
+
+- Submit a waste pickup request.
+
+- Complete a quiz from the awareness section.
+
+- Post in the community feed.
+
+- Return to the dashboard.
+
+**Expected Behaviour**: Points and badges update for completed activities.
+
+**Actual Behaviour** : No changes appear for pickups, quizzes, or points. ‘No badges yet. Start participating!'
+
+**Status (Pass/Fail)**: Fail  
+ **Severity/Priority (if failed)** : Major
 
 
+### TC-3.2: Validate Charts and Export for Analytics
+### **Test Case ID & Title: TC-CLEANCITY-53**
+**Objective** : Test visual analytics and export feature for user data.
+**Test Steps**: 
+- Login as newuser.
+
+- Post blogs, schedule pick ups, share in the community feed
+
+- Go to dashboard to view Dashboard analytics.
+
+**Expected Behaviour**: View users activity with charts and trends showing analysis on top users and missed, total requests and blog posts
+
+
+**Actual Behaviour** : User dashboard analytics has no updated data despite posting and scheduling requests
+
+
+**Status (Pass/Fail)**: Fail  
+ **Severity/Priority (if failed)** : Major
+
+
+### TC-3.3 – Unauthorized Dashboard Access
+### **Test Case ID & Title: TC-3.3** – Prevent Unauthenticated Dashboard Access
+
+**Objective**: To verify that only registered and authenticated users can access the dashboard.
+
+**Test Steps**:
+
+- Click on home page without logging in.
+
+- Click on dashboard as a random user.
+
+- Input a random email that isn’t a registered user; ray@gmail.com then password.
+
+- Login
+
+**Expected**:
+
+The system should display an authentication error.
+
+Access to the dashboard should be denied unless the user is registered and logged in.
+
+**Actual**:
+
+The dashboard becomes accessible.
+
+A new account is created using the unregistered email without proper verification.
+
+**Status (Pass/Fail)**: Fail
+
+**Severity/Priority (if failed)**: Critical / Highest
+
+
+### TC-3.4: Pickup and Scheduled Requests Not Displayed
+### **Test Case ID & Title**: TC-3.4 – Scheduled Pickup Visibility
+
+**Objective**: Ensure that users can view, edit, or cancel their pickup requests after submission.
+
+**Test Steps**:
+
+Register and log in as a new user.
+
+Navigate to the "Schedule Pickup" form.
+
+Enter valid name, email, and waste details.
+
+Choose a future pickup date and submit.
+
+Click on the profile button → "My Requests".
+
+Check if the new pickup request appears.
+
+**Expected**:
+
+Scheduled pickup is visible in the "My Requests" section with correct status and actions (edit/cancel).
+
+**Actual**:
+
+“No waste pickup requests yet” is shown; user cannot view or manage submitted requests.
+
+**Status (Pass/Fail)**: Fail
+
+**Severity/Priority (if failed)**: Critical / High
 
 
 

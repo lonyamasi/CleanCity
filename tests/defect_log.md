@@ -138,3 +138,131 @@ The Admin gets an alert that status is updated but the user gets plain text stat
 
 ---
 
+## DF 2: Dashboard and analytics
+### DFL-2.1: User Dashboard & Gamification Not Updating After User Activities
+**Related Test Case**: TC-3.1 
+
+### Description  
+The user dashboard does not reflect any updates after completing key user actions such as requesting pickups, completing quizzes, or posting blog. Only the community feed participation count reflects correctly. This affects overall user experience and makes gamification and tracking features unusable.
+
+### Steps to Reproduce  
+
+- Log in with a test user.
+
+- Submit a pickup request.
+
+- Complete a quiz.
+
+- Post in the community feed.
+
+- Open dashboard. 
+   
+
+### Expected Result  
+All activities reflected; dashboard updates points, badges, quizzes, pickups.
+
+### Actual Result  
+Only community post count updates.
+
+### Evidence  
+[DFL-2.1 Video]()
+
+
+### Severity/Priority  
+- **Severity**: Major  
+- **Priority**: Medium  
+
+
+### DFL-2.2: Dashboard Accessible Without Login
+**Related Test Case**: TC-3.3 
+
+### Description  
+The dashboard as of now is accessible to anyone with a valid email even without registering or logging in.
+
+### Steps to Reproduce  
+
+- Click on home page without logging in.
+
+- Click on dashboard as a random user.
+
+- Input a random email that isn’t a registered user; ray@gmail.com then password.
+
+- Login
+   
+
+### Expected Result  
+Error message indicating the user is not authenticated/invalid user.
+
+### Actual Result  
+Dashboard accessible and creates new account.
+
+### Evidence  
+[DFL-2.2 Video]()
+
+
+### Severity/Priority  
+- **Severity**: Critical  
+- **Priority**: Highest  
+
+
+### DFL-2.3: Visual Analytics Not Displaying Data
+**Related Test Case: TC-3.2**
+**Description**
+The dashboard analytics section does not show the activities of the user. Despite users performing actions like posting in the community feed or scheduling pickups, the analytics do not update to reflect these actions. Additionally, the export feature is unavailable, making it difficult to analyze or retain activity records.
+
+**Steps to Reproduce**
+- Login as a new user.
+
+- Post blogs, schedule pickups, and post in the community feed.
+
+- Navigate to the dashboard analytics section.
+
+- Attempt to export analytics data.
+
+**Expected Result**
+Visual analytics should show up-to-date user activities in chart format. Charts should display data such as most active users, completed pickups, posts, and blog trends. An export option (CSV/PDF) should be available and functional.
+
+**Actual Result**
+Analytics section does not show updated data, despite completed user actions. Export functionality is missing or inaccessible.
+
+Evidence
+[DFL-2.3 Screenshot]()
+[DFL-2.3 Screenshot]()
+
+**Severity/Priority**
+**Severity**: major
+
+**Priority**: Medium
+
+
+
+### DFL-2.4: Pickup and Scheduled Requests Not Displayed
+**Related Test Case**: TC-3.4
+
+### Description  
+User is not able to view, edit or cancel their scheduled requests, whether recent or history.
+
+### Steps to Reproduce  
+
+- Click on the schedule pickup as newuser.
+
+- Input your name, email and details of the waste.
+
+- Set the preferred date, should not be in past and submit request.
+
+- Check on profile button then my requests button to view the scheduled requests status.
+   
+
+### Expected Result  
+On submitting, user should be able to check my requests to see the requests status
+
+### Actual Result  
+My requests on users profile shows No waste pickup requests yet.
+
+### Evidence  
+[DFL-2.4 Video]()
+
+
+### Severity/Priority  
+- **Severity**: Critical  
+- **Priority**: High 
