@@ -142,7 +142,7 @@ Each test case will include:
 - **Actual Result**  
 - **Status (Pass/Fail)**  
 - **Severity/Priority (if failed)**  
-- **Attachments (screenshots, logs)**  
+
 
 ---
 
