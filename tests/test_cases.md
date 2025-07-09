@@ -33,8 +33,8 @@ Expected vs Actual
 |-------------------------------|-------------------------------|
 |Error pops up, email is invalid|Creates account with this email|
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Major
+**Status (Pass/Fail)**: Fail  
+**Severity/Priority (if failed)** : Major
 
 
 ### TCS-1.1.2: Valid Password should be atleast 8 characters
@@ -57,8 +57,8 @@ Confirm Password: say123
 
 Pop up- Password must be 3 characters.  User is able to proceed with registration,
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Critical
+**Status (Pass/Fail)**: Fail  
+**Severity/Priority (if failed)** : Critical
 
 
 
@@ -82,8 +82,8 @@ Repeat process now with email as - Clara@gmail.com
 **Actual**
 - creates two  different users
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Major
+**Status (Pass/Fail)**: Fail  
+**Severity/Priority (if failed)** : Major
 
 
 ### TCS-1.2: User Log in and Log out process
@@ -111,7 +111,7 @@ Repeat process now with email as - Clara@gmail.com
 |On refresh, user Clara Sayari is still in session                  | User is still in session      |
 |clicking log out allows users to log out and clear session data    | User session is logged out    |
 
-- **Status (Pass/Fail)**: Pass
+**Status (Pass/Fail)**: Pass
 
 
 
@@ -143,7 +143,7 @@ Repeat process now with email as - Clara@gmail.com
 - User dashboard available for the user. No admin functionalities.
 - Admin  can fully access and utilize admin dashboard and functionalities
 
- **Status** (Pass/Fail): Pass
+**Status** (Pass/Fail): Pass
 
 
 
@@ -175,8 +175,8 @@ Repeat process now with email as - Clara@gmail.com
 - Form accepts and stores past dates like 2024-01-6
 - No restrictions on date picker or validation logic
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Critical
+**Status (Pass/Fail)**: Fail  
+**Severity/Priority (if failed)** : Critical
 
 
 
@@ -200,8 +200,8 @@ System blocks duplicate submissions for same user, date, and location
 
 Two identical requests are accepted with different IDs
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Major
+**Status (Pass/Fail)**: Fail  
+**Severity/Priority (if failed)** : Major
 
 
 
@@ -236,8 +236,8 @@ Two identical requests are accepted with different IDs
 **Actual Behavior**
 No cancel button or logic is implemented
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Critical
+ **Status (Pass/Fail)**: Fail  
+ **Severity/Priority (if failed)** : Critical
 
 
 
@@ -261,8 +261,8 @@ No cancel button or logic is implemented
 - The Admin gets an alert that status is updated
 - Plain text status (“Scheduled”) only for user
 
-- **Status (Pass/Fail)**: Fail  
-- **Severity/Priority (if failed)** : Major
+**Status (Pass/Fail)**: Fail  
+ **Severity/Priority (if failed)** : Major
 
 
 
