@@ -114,8 +114,29 @@ Repeat process now with email as - Clara@gmail.com
 **Status (Pass/Fail)**: Pass
 
 
+### TC-1.4: Verify Login with Correct Credentials
 
-### TC-1.3: Admin Function Access Restriction
+**Objective:** Ensure that a user can successfully log into the system using valid username and password
+
+**Steps to Reproduce:**
+
+- Navigate to the login page
+- Enter valid credentials (e.g., Email: user@cleancity.com, password: SecurePass123)
+- Click the "Login" button
+
+**Expected Behavior:**
+- User is not authenticated for log in 
+
+**Actual Behavior:**
+- Error pops out- Invalid Email or password
+
+**Status (Pass/Fail):** Pass
+**Severity/Priority (if failed):** Critical
+
+
+
+
+### TC-1.5: Admin Function Access Restriction
 
 **Objective:** Ensure that only users with the "Admin" role can access and perform admin-specific functions in the system
 
