@@ -164,8 +164,6 @@ All activities reflected; dashboard updates points, badges, quizzes, pickups.
 ### Actual Result  
 Only community post count updates.
 
-### Evidence  
-[DFL-2.1 Video]()
 
 
 ### Severity/Priority  
@@ -196,8 +194,7 @@ Error message indicating the user is not authenticated/invalid user.
 ### Actual Result  
 Dashboard accessible and creates new account.
 
-### Evidence  
-[DFL-2.2 Video]()
+
 
 
 ### Severity/Priority  
@@ -225,9 +222,6 @@ Visual analytics should show up-to-date user activities in chart format. Charts 
 **Actual Result**
 Analytics section does not show updated data, despite completed user actions. Export functionality is missing or inaccessible.
 
-Evidence
-[DFL-2.3 Screenshot]()
-[DFL-2.3 Screenshot]()
 
 **Severity/Priority**
 **Severity**: major
@@ -258,9 +252,6 @@ On submitting, user should be able to check my requests to see the requests stat
 
 ### Actual Result  
 My requests on users profile shows No waste pickup requests yet.
-
-### Evidence  
-[DFL-2.4 Video]()
 
 
 ### Severity/Priority  
