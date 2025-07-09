@@ -81,7 +81,7 @@ System accepts the duplicate request and assigns it a new request ID.
 ---
 
 ### DFL-1.3: User cannot Modify or Cancel Pickup Requests
-**Related Test Case**: TC-2.2 **Duplicate Pickup Requests for Same User, Date, and Location**
+**Related Test Case**: TC-2.3 **Manage Pickup Requests (Modify & Cancel)**
 
 ### Description  
 The dashboard interface does not provide any options (buttons, links, or forms) for users to update or cancel pickup requests. This restricts the user from correcting mistakes (such as wrong date or location) or cancelling requests they no longer need. This directly affects user experience and system flexibility.
@@ -105,8 +105,36 @@ System has no "Edit" button to modify request and has no "Cancel" button to dele
 [DFL-1.3](https://github.com/user-attachments/assets/e4915a4d-d169-4c49-8e43-d80c03e635d9)
 
 ### Severity/Priority  
-- **Severity**: Major  
+- **Severity**: Critical 
 - **Priority**: High  
+
+---
+
+### DFL-1.4: No progress indicator or visual status tracking on the user dashboard
+**Related Test Case**: TC-2.4 **Track Requests Progress**
+
+### Description  
+The dashboard shows only plain status text ("Pending", "Scheduled"), without progress bars or timeline indicators. This reduces clarity for the user on the request status.
+
+### Steps to Reproduce  
+
+1. Log in as Clara
+2. Submit a pickup request
+3. Admin changes the request status to “Scheduled”.
+4. Refresh Dashboard - Status text updates  
+
+### Expected Result  
+Progress indicator on user interface
+
+### Actual Result  
+The Admin gets an alert that status is updated but the user gets plain text status (“Scheduled”) only.
+
+### Evidence  
+[DFL-1.4](https://github.com/user-attachments/assets/23876cfc-acbc-4381-a920-61d4f43ff144)
+
+### Severity/Priority  
+- **Severity**: Minor  
+- **Priority**: Medium
 
 ---
 
