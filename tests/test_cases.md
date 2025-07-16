@@ -1,4 +1,4 @@
-#  CleanCity – High Risk Test Cases
+#  CleanCity –  Test Cases
 
  Test Case Format  
 
@@ -14,372 +14,203 @@ Each test case will include:
 ---
 
 
-## TC1: Authentication and Access control
-### TCS-1.1: User Registration
-**Objective** :Validate input fields (email, password, full name, phone)
-
-### TCS-1.1.1: Invalid email characters
-**Objective** : Only valid emails are accepted
-
-**Steps to reproduce**:
-- Click the register button
-- Enter full name
-- Enter email address as - earl#!@gmail.com
-- Create password, confirm password 
-- Click create account.
-
-Expected vs Actual
-|Expected                       | Actual                        |
-|-------------------------------|-------------------------------|
-|Error pops up, email is invalid|Creates account with this email|
-
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Major
 
 
-### TCS-1.1.2: Valid Password should be atleast 8 characters
-**Objective**: Password only accepts atleast 8 characters
+ ## Authentication System and Access control – Test Cases
 
-**Steps to Reproduce**:
+### TC-AUTH-001: User Registration with Valid Inputs
 
-Click Register on Nav bar
-Full Name: Sayari Leo
-Email: sayari@gmail.com
-password (Enter a password with 7 or less characters eg): say123
-Confirm Password: say123
+*** Objective:** Verify that users can register successfully using valid data
 
+*** Test Steps:**
 
-**Expected:**
+- Navigate to the registration page
+- Enter a valid email, username, and strong password
+- Click “Register”
 
- Error pops up,password must be 8 characters long
+*** Expected Result:** User account is created and a success message is displayed
+*** Actual Result:** User account is created and a success message is displayed
+Status: Done
+Severity/Priority(if failed): High
 
-**Actual:**
+### TC-AUTH-002: User Registration with Invalid Inputs
 
-Pop up- Password must be 3 characters.  User is able to proceed with registration,
+*** Objective:** Confirm proper validation of incorrect registration data
 
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Critical
+*** Test Steps:**
 
+- Enter invalid email format and weak password, and whitespace on name
+- Leave required fields blank
+- Click “Register”
 
+*** Expected Result:** Validation errors are displayed and account creation is blocked
+*** Actual Result:** No validation error, account is created
+*** Status:** Done
+*** Severity/Priority:** High
 
-### TCS-1.1.3: One Email registers one user.
+### TC-AUTH-003: Login with Correct Credentials
 
-**Objective-3**: Ensure one email(regardless of case) registers one user.
+***Objective:** Verify successful login with correct credentials
 
-**Steps to Reproduce**:
+***Test Steps:**
 
-Click register button
-Enter full name - Clara
-Enter email - clara@gmail.com
-Enter password -
-Register
-Repeat process now with email as - Clara@gmail.com
+- Navigate to login page
+- Enter valid registered email and password
+- Click “Login”
 
-**Expected**
+***Expected Result:** User is authenticated and redirected to user profile
+***Actual Result:** User is authenticated and redirected to user profile
+***Status:** Done
+*** Severity/Priority:** High
 
-- error; email is already registered
+### TC-AUTH-004: Login with Incorrect Credentials
 
-**Actual**
-- creates two  different users
+*** Objective:** Ensure login is blocked with incorrect credentials
 
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Major
+*** Test Steps:***
+- Enter registered email and incorrect password
+- Click “Login”
 
+*** Expected Result:*** Error message “Invalid credentials” is shown
+*** Actual Result:*** User is able to log in
+*** Status:** Done
+*** Severity/Priority: *** Critical
 
-### TCS-1.2: User Log in and Log out process
+### TC-AUTH-005: Password Strength Enforcement
 
-**Objective-1**: User Login and Log out process of system works
+*** Objective:*** Validate password rules during registration
 
-**Steps to reproduce**:
+*** Test Steps:***
 
-- Click the register button
-- Enter full name- Clara Sayari
-- Enter email address as - clara@gmail.com
-- Create password, confirm password 
-- Click create account.
-- Click Log in
-- Enter email address- clara@gmail.com
-- Enter password used to register
-- Click Log in
-- Refresh the page
-- click log out
+- Enter a password missing special characters and numbers
+- Click “Register”
 
+*** Expected Result:*** Error message prompts for stronger password
+*** Actual Result: *** No error message prompt
+*** Status: ***  Done
+*** Severity/Priority: *** High
 
-|Expected                                                           | Actual                        |
-|-------------------------------------------------------------------|-------------------------------|
-|User, Clara Sayari is should be able to login                      | User, Clara Sayari  logs in   |
-|On refresh, user Clara Sayari is still in session                  | User is still in session      |
-|clicking log out allows users to log out and clear session data    | User session is logged out    |
+### TC-AUTH-006: Secure Session Start and Expiration
 
-**Status (Pass/Fail)**: Pass
+*** Objective: *** Ensure session begins securely and expires as expected
 
+*** Test Steps: ***
 
-### TC-1.4: Verify Login with Correct Credentials
+- Login as a user
+- Perform user actions
+- Leave browser idle past session timeout limit
 
-**Objective:** Ensure that a user can successfully log into the system using valid username and password
+*** Expected Result: *** Session automatically logs out after timeout
 
-**Steps to Reproduce:**
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** High
 
-- Navigate to the login page
-- Enter valid credentials (e.g., Email: user@cleancity.com, password: SecurePass123)
-- Click the "Login" button
+### TC-AUTH-007: Role-Based Access Restriction (Admin vs User)
 
-**Expected Behavior:**
-- User is not authenticated for log in 
+*** Objective: *** Verify that access controls limit functionality based on user role
 
-**Actual Behavior:**
-- Error pops out- Invalid Email or password
+*** Test Steps: ***
 
-**Status (Pass/Fail):** Pass
-**Severity/Priority (if failed):** Critical
+- Login as User
+- Try accessing admin-only page or action
+- Repeat steps after logging in as Admin
 
+*** Expected Result: *** Access denied for User, granted for Admin
+*** Actual Result: *** Access denied for User, granted for Admin
+*** Status: *** Done
+*** Severity/Priority: *** Critical
 
+## WASTE MANAGEMENT – Test Cases
 
+### TC-WASTE-001: Schedule Waste Pickup with Valid Inputs
 
-### TC-1.5: Admin Function Access Restriction
+*** Objective: *** Verify users can submit a waste pickup request with correct data
 
-**Objective:** Ensure that only users with the "Admin" role can access and perform admin-specific functions in the system
+*** Test Steps: ***
 
-**Steps to Reproduce:**
+- Log in as user
+- Navigate to “Schedule Pickup” page
+- Fill form: Full Name, Email,pickup location,waste type,preferred pick-up date,additional description
+- Click “Submit Request”
 
-- Log in as Regular User
-- Email: user@cleancity.com
-- Password: password123
-- Attempt to access admin dashboard or functions (e.g., change pickup request status)
-- Log out
+*** Expected Result: ***  Request is created and confirmation message shown
+*** Actual Result: ***  Request is created and confirmation message shown
+*** Status: ***  Done
+*** Severity/Priority: ***  High
 
+### TC-WASTE-002: Update Scheduled Pickup Request
 
-- Log in as adminUser (role: Admin)
-- Email: admin@cleancity.com
-- Password: admin123
-- Access admin dashboard and perform admin functions
+*** Objective: ***  Ensure users can modify scheduled waste requests
 
-**Expected Behavior:**
+*** Test Steps: *** 
 
-- User dashboard available for the user. No admin functionalities.
-- Admin  can fully access and utilize admin dashboard and functionalities
+- Log in as user
+- Go to “My Requests”
+- Select an upcoming pickup
+- Edit pickup date or location
+- Save changes
 
-**Actual Behavior:**
+*** Expected Result: ***  Request is updated successfully
+*** Actual Result: ***  Request is not shown, cannot be updated
+***  Status:  *** Done
+***  Severity/Priority: ***  Critical
 
-- User dashboard available for the user. No admin functionalities.
-- Admin  can fully access and utilize admin dashboard and functionalities
+### TC-WASTE-003: Cancel Scheduled Pickup Request
 
-**Status** (Pass/Fail): Pass
+*** Objective: ***  Confirm users can cancel their waste pickup
 
+*** Test Steps: *** 
 
+- Log in as user
+- View scheduled pickups
+- Click “Cancel” on desired request
+- Confirm cancellation
 
+*** Expected Result: ***  Request status set to “Cancelled” and removed from active list
+*** Actual Result: ***  Requests not shown, cannot be updated
+*** Status: ***  Done
+***  Severity/Priority: ***  Critical
 
+### TC-WASTE-004: Track Request Status
 
+*** Objective: ***  Validate request status updates and display
 
+*** Test Steps: *** 
+
+- Submit pickup request
+- Login at intervals to check request status
+
+*** Expected Result: ***  Request progresses from “Pending” → “In Progress” → “Completed”
+*** Actual Result: ***  : No request is logged in the first place
+*** Status: ***  Done
+*** Severity/Priority: ***  High
+
+### TC-WASTE-005: Form Validation – Missing Inputs
+
+*** Objective: ***  Confirm pickup form validation on required fields
+
+*** Test Steps: *** 
 ## TC2: Waste Management Testing
 ### TCS-2: Main Operations around waste pickup and handling
 
-### TC-2.1 Validate date must be at least 24h in future
-**Objective:** Ensure that system only allows dates atleast 24h in the future
-
-**Steps to Reproduce**:
-
-- Go to the Home tab of the CleanCity website.
-- Fill in the pickup request form with name(Jay), location(Eldoret), and waste type(Recyclable).
-- For Preferred Pickup Date, choose a date in the past (2024-01-06).
-- Submit the form.
-
-
-
-**Expected Behavior**:
-
-- Form should reject past dates with an error message
-- Date input should restrict selection to today and the future
-
-**Actual Behavior**
-
-- Form accepts and stores past dates like 2024-01-6
-- No restrictions on date picker or validation logic
-
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Critical
-
-
-
-
-### TC-2.2 Duplicate Pickup Requests for Same User, Date, and Location
-**Objective**: Test that the system does not allow a user to submit multiple pickup requests for the same location and date, ensuring no scheduling conflicts or accidental duplicates
-
-**Steps to Reproduce**:
-
-- Submit a pickup request with user “Jay”, location “Eldoret”, date 2024-06-01 
-
-- Submit another with the same details
-
-- Check the Dashboard to verify
-
-**Expected Behavior**
-
-System blocks duplicate submissions for same user, date, and location
-
-**Actual Behavior**
-
-Two identical requests are accepted with different IDs
-
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Major
-
-
-
-
-
-### TC-2.3: Manage Pickup Requests (Modify & Cancel)
-**Objective**: Ensure that users can modify or cancel pickup requests directly from their dashboard.
-
-**Steps to Reproduce**
-
-- Log in as Clara.
-- Submit a pickup request (for 2025-08-09).
-- Navigate to the Dashboard.
-- Try to modify or cancel the request.
-
-
-**Field**: Modify Request
-
-**Expected Behavior**
-
-- "Edit" button  to update request details 
-
-**Actual Behavior**
-
-- No modification option available
-
-**Field**:Cancel Request
-
-**Expected Behavior**
-"Cancel" button for pending requests with a confirmation dialog
-
-**Actual Behavior**
-No cancel button or logic is implemented
-
- **Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Critical
-
-
-
-### TC-2.4: Track Requests Progress
-
-**Objective**: Ensure that users can see live status updates of their pickup requests from the dashboard, reflecting the full request lifecycle ( Pending -Scheduled - Completed)
-
-**Steps to Reproduce**:
-
-- Log in as Clara
-- Submit a pickup request
-- Admin changes the request status to “Scheduled”.
-- Refresh Dashboard - Status text updates
-
-**Expected Behavior**:
-
-- Progress indicator
-
-**Actual Behavior**:
-
-- The Admin gets an alert that status is updated
-- Plain text status (“Scheduled”) only for user
-
-**Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Major
-
-
----
-## TC-3: Dashboard & Analytics Testing
-### TC-3.1: Gamification Badge & Points System
-### **Test Case ID & Title: TC-CLEANCITY-55**
-**Objective** : Ensure eligible actions trigger points and badge unlocks as achievements.
-**Test Steps**: 
-- Log in with a test user credential.
-
-- Submit a waste pickup request.
-
-- Complete a quiz from the awareness section.
-
-- Post in the community feed.
-
-- Return to the dashboard.
-
-**Expected Behaviour**: Points and badges update for completed activities.
-
-**Actual Behaviour** : No changes appear for pickups, quizzes, or points. ‘No badges yet. Start participating!'
-
-**Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Major
-
-
-### TC-3.2: Validate Charts and Export for Analytics
-### **Test Case ID & Title: TC-CLEANCITY-53**
-**Objective** : Test visual analytics and export feature for user data.
-**Test Steps**: 
-- Login as newuser.
-
-- Post blogs, schedule pick ups, share in the community feed
-
-- Go to dashboard to view Dashboard analytics.
-
-**Expected Behaviour**: View users activity with charts and trends showing analysis on top users and missed, total requests and blog posts
-
-
-**Actual Behaviour** : User dashboard analytics has no updated data despite posting and scheduling requests
-
-
-**Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Major
-
-
-### TC-3.3 – Unauthorized Dashboard Access
-### **Test Case ID & Title: TC-3.3** – Prevent Unauthenticated Dashboard Access
-
-**Objective**: To verify that only registered and authenticated users can access the dashboard.
-
-**Test Steps**:
-
-- Click on home page without logging in.
-
-- Click on dashboard as a random user.
-
-- Input a random email that isn’t a registered user; ray@gmail.com then password.
-
-- Login
-
-**Expected**:
-
-The system should display an authentication error.
-
-Access to the dashboard should be denied unless the user is registered and logged in.
-
-**Actual**:
-
-The dashboard becomes accessible.
-
-A new account is created using the unregistered email without proper verification.
-
-**Status (Pass/Fail)**: Fail
-
-**Severity/Priority (if failed)**: Critical / Highest
-
-
-### TC-3.4: Pickup and Scheduled Requests Not Displayed
-### **Test Case ID & Title**: TC-3.4 – Scheduled Pickup Visibility
+### TC-2.1: Pickup and Scheduled Requests Not Displayed
 
 **Objective**: Ensure that users can view, edit, or cancel their pickup requests after submission.
 
 **Test Steps**:
 
-Register and log in as a new user.
+- Register and log in as a Clara.
 
-Navigate to the "Schedule Pickup" form.
+- Navigate to the "Schedule Pickup" form.
 
-Enter valid name, email, and waste details.
+- Enter valid name, email, and waste details.
 
-Choose a future pickup date and submit.
+- Choose a future pickup date and submit.
 
-Click on the profile button → "My Requests".
+- Click on the profile button → "My Requests".
 
-Check if the new pickup request appears.
+- Check if the new pickup request appears.
 
 **Expected**:
 
@@ -389,12 +220,536 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 
 “No waste pickup requests yet” is shown; user cannot view or manage submitted requests.
 
-**Status (Pass/Fail)**: Fail
+**Status**: Fail
 
-**Severity/Priority (if failed)**: Critical / High
+**Severity**: Critical
+**Priority**: High
+
+
+### TC-2.2 Validate date must be at least 24h in future
+**Objective:** Ensure that system only allows dates atleast 24h in the future
+
+- Navigate to “Schedule Pickup”
+- Leave location or waste type blank
+- Click “Submit”
+
+*** Expected Result: ***  Field error messages shown;
+*** Actual Result: *** Field error messages shown;
+*** Status: ***  Done
+*** Severity/Priority: ***  Critical
+
+### TC-WASTE-006: Request Persistence with localStorage
+
+*** Objective: ***  Ensure requests persist across sessions using localStorage
+
+*** Test Steps: *** 
+- Go to the Schedule Pickup tab of the CleanCity website.
+
+- Fill in the pickup request form with name(Clara), location(Mombasa), and waste type(Recyclable).
+
+- For Preferred Pickup Date, choose a date in the past (2024-01-06).
+
+- Submit the form.
+
+**Expected Behavior**:
+
+- Submit pickup request
+- Log out or close browser
+- Reopen site and log in
+- Check “My Requests” list
+
+*** Expected Result: ***  Request is still visible; data loaded from localStorage or synced backend
+***  Actual Result: ***  Pending
+*** Status: ***  Pending
+***  Severity/Priority: ***  Medium
+
+### Edge Cases
+### TC-WASTE-009: Scheduling with Past Date
+
+*** Objective: *** Prevent users from selecting a pickup date in the past
+
+*** Test Steps: *** 
+
+- Open pickup scheduling form
+- Select a date prior to today
+- Submit form
+
+*** Expected Result: ***  Validation error shown; form not submitted
+*** Actual Result: ***  Scheduling is done with past date
+*** Status: ***  Done
+*** Severity/Priority: ***  Critical
+
+**Status**: Fail 
+
+**Severity**: Critical
+**Priority** : High
+
+### TC-2.3 Duplicate Pickup Requests for Same User, Date, and Location
+**Objective**: Test that the system does not allow a user to submit multiple pickup requests for the same location and date, ensuring no scheduling conflicts or accidental duplicates
+
+ ### TC-WASTE-010: Duplicate Pickup Request by Same User
+
+*** Objective: *** Verify if the system allows a user to submit two identical pickup requests
+- Submit a pickup request with user “Clara”, location “Mombasa”, date 2024-06-01 
+
+*** Test Steps: ***
+
+- Login as a registered user
+- Navigate to “Schedule Pickup” form
+- Submit a request with specific values (e.g. location: “Green Lane”, date: “2025-07-15”, waste type: “Organic”)
+- Without changing any fields, submit the same request again
+- View request list or confirmation status
+
+*** Expected Result: ***
+- One of the following should occur:
+- Duplicate request is blocked with a validation message: “You already submitted a request with similar details”
+- System allows it but flags it visually or merges the requests
+
+
+*** Actual Result: *** All requests submitted
+*** Status:*** Done
+*** Severity/Priority: *** High
+
+
+**Status (Pass/Fail)**: Fail  
+
+## DASHBOARD AND ANALYTICS – Test Cases
+
+### TC-DASH-001: Load User Dashboard on Login
+
+***  Objective: ***  Ensure dashboard loads successfully for authenticated users
+
+*** Test Steps: *** 
+- Log in with valid credentials
+- Wait for redirect or navigate to /dashboard
+
+*** Expected Result: ***  Dashboard page loads with personalized components
+*** Actual Result: ***  Profile with personalized components loads
+*** Status: *** Done
+*** Severity/Priority: *** High
+**Severity** : Major
+**Priority** : Medium
+
+### TC-2.4: Manage Pickup Requests (Modify & Cancel)
+**Objective**: Ensure that users can modify or cancel pickup requests directly from their dashboard.
+
+### TC-DASH-002: Statistics Accuracy Based on User Activity
+
+*** Objective: *** Verify dashboard reflects correct user-generated stats
+- Log in as Clara.
+
+- Submit a pickup request (for 2025-08-09).
+
+- Navigate to the Dashboard.
+
+- Try to modify or cancel the request.
+
+*** Test Steps: ***
+
+- Perform specific actions (e.g., submit 3 pickup requests)
+- View dashboard after each action
+
+*** Expected Result: *** Count and statistics update to reflect performed actions
+*** Actual Result: *** No updates on the performed actions
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-DASH-003: Chart Rendering with Varying Data Sets
+
+*** Objective: *** Confirm charts adapt to changes in dataset volume and diversity
+
+*** Test Steps: ***
+
+- Login and trigger chart component
+- Vary data ranges (empty, minimal, large sets)
+- Observe chart rendering
+
+*** Expected Result: *** Charts adjust without breaking layout; appropriate fallback for empty sets
+*** Actual Result: *** No charts are rendered
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-DASH-004: Leaderboard Update Based on User Actions
+
+*** Objective: *** Validate dynamic leaderboard reflects recent user performance
+ **Status (Pass/Fail)**: Fail  
+
+ **Severity** : Critical
+ **Priority** : High
+
+*** Test Steps: ***
+
+- Complete leaderboard-triggering actions (e.g., most pickups, feedback)
+- Compare position in leaderboard before and after
+
+*** Expected Result: *** User rank updates accordingly; no delay or misrank
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
+### TC-2.5: Track Requests Progress
+
+### TC-DASH-005: Slow or Failed Data Fetch
+
+*** Objective: *** Observe behavior when dashboard APIs respond slowly or fail
+
+*** Test Steps: ***
+- Log in as Clara
+- Submit a pickup request
+- Refresh Dashboard 
+
+- Simulate API latency or disconnect
+- Load dashboard
+
+*** Expected Result: *** Dashboard shows loading state, fallback UI, or error message
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
+- Progress indicator or message alert
+
+ ## CONTENT MANAGEMENT
+
+### TC-CONTENT-001: Admin – Create Blog Article
+
+*** Objective: *** Verify admin users can successfully create and publish articles
+- There is no alert or progress indicator
+
+**Status (Pass/Fail)**: Fail 
+
+**Severity** : Major
+**Priority**: Medium
+
+*** Test Steps: ***
+
+- Login as admin
+- Navigate to blog creation section
+- Fill in title, body, category, and publish settings
+- Click “Publish”
+
+*** Expected Result: *** Article is saved and appears in blog feed
+*** Actual Result: *** No blog creation section
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+
+### TC-CONTENT-002: Admin – Edit Existing Blog Article
+*** Objective: *** Ensure article content can be modified by admin
+
+*** Test Steps: ***
+
+- Login as admin
+- Access blog manager
+- Open existing article and modify content
+- Save changes
+
+*** Expected Result: *** Changes reflected in the live article view
+*** Actual Result: *** No editing features of blogs
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-CONTENT-003: Admin – Delete Blog Article
+*** Objective: *** Confirm admins can remove blog posts
+
+*** Test Steps: ***
+
+- Login as admin
+- Locate published article
+- Click “Delete” and confirm action
+
+*** Expected Result: *** Article removed from blog feed
+*** Actual Result: *** No editing/ deleting features on blogs
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-CONTENT-004: User – Submit Blog Comment
+*** Objective: *** Validate users can comment on articles
+
+*** Test Steps: ***
+
+- Login as user
+- View blog article
+- Write and submit a comment
+
+*** Expected Result: *** Comment appears below article with timestamp and user ID
+*** Actual Result: *** Comment appears but disappears on reload
+*** Status: *** Done
+*** Severity/Priority: *** Medium
+
+### TC-CONTENT-005: View Blog Comments
+
+*** Objective: *** Ensure all users can view article comments
+
+*** Test Steps: ***
+- Visit a blog post
+- Scroll to comment section
+
+*** Expected Result: *** Comments load properly and display in chronological order
+*** Actual Result: *** No comments displayed including one from user himslef
+*** Status: *** Done
+*** Severity/Priority: *** Low
+
+## TC-CONTENT-006: Post to Community Feed
+
+*** Objective: *** Verify that users can post text, images, or links to the feed
+
+*** Test Steps: ***
+
+- Login as user
+- Navigate to Community Feed
+- Create a new post with text and optional media
+- Click “Post”
+
+*** Expected Result: *** Content appears in feed and is visible to all users
+*** Actual Result: *** Content appears in feed and is visible to all users
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-CONTENT-007: Feed Interactions – Likes & Comments
+
+*** Objective: *** Confirm likes and comments function on community posts
+
+*** Test Steps: ***
+
+- View feed post
+- Click “Like” and add a comment
+- Reload feed
+
+*** Expected Result: *** Like count updates and comment displays correctly
+*** Actual Result: *** Like count updates and comment displays correctly
+*** Status: *** Done
+*** Severity/Priority: *** Medium
+
+### TC-CONTENT-008: Load Awareness Content (Tips, Quizzes, Infographics)
+
+*** Objective: *** Ensure awareness section loads properly across formats
+
+*** Test Steps: ***
+
+- Navigate to awareness section
+- View tips, take a quiz, and open an infographic
+
+*** Expected Result: *** Content loads without errors; quizzes are interactive
+*** Actual Result: *** Content loads without errors; quizzes are interactive
+*** Status: *** Done
+*** Severity/Priority: *** Medium
+
+ ## User Management – Functional Test Cases
+
+### TC-USER-001: Update Profile Information
+---
+
+## TC-4: Blog Filter Functionality
+### Test Case ID & Title: TC-4.1 – Blog Filter Feature
+
+**Objective**: Ensure blog category filters show relevant posts.
+
+*** Objective: *** Verify users can update their personal details successfully
+
+*** Test Steps: ***
+
+- Login as a registered user
+- Navigate to “Profile Settings”
+- Modify fields (name, email)
+- Click “Save”
+
+*** Expected Result: *** Updated information is saved and reflected immediately
+*** Actual Result: *** Updated information is saved and reflected immediately
+*** Status: *** Done
+*** Severity/Priority: ***: High
+
+### TC-USER-002: Invalid Profile Inputs
+
+*** Objective: *** Confirm validation errors trigger when updating with invalid data
+
+*** Test Steps: ***
+
+- Enter incorrectly formatted email or empty required fields
+- Click “Save”
+
+*** Expected Result: *** Errors prevent saving; appropriate validation messages shown
+*** Actual Result: *** No errors, invalid data accepted
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-USER-003: Access Notifications (Read/Unread)
+
+*** Objective: *** Ensure users can view and manage notifications properly
+
+*** Test Steps: ***
+
+- Login and trigger actions that generate notifications
+- Open notification center
+- Mark notifications as “Read” or delete them
+- Login as Clara
+
+- Navigate to Blog section.
+
+- Select a specific Tags filter (“Recycling”).
+
+- Observe the displayed blog posts.
+
+**Expected**: Only blog posts matching the selected category should be displayed.
+
+**Actual**: All blog posts continue to appear regardless of the selected filter.
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: High
 
 ---
 
+## TC-5: Community Post Visibility
+### Test Case ID & Title: TC-5.1 – Community Post Submission
+
+**Objective**: Validate that newly submitted community posts are visible.
+
+**Test Steps**:
+
+- Log in and go to the Community section.
+
+- Submit a valid new post.
+
+- Reload the community view.
+
+**Expected**: New post appears immediately under community posts.
+
+**Actual**: Post is submitted and visible after posting.
+
+**Status**: Pass
+
+**Severity**: High
+
+**Priority**: High
+
+---
+
+## TC-6: Awareness section (Quiz Score Loop Bug)
+### Test Case ID & Title: TC-6.1 – Quiz Score Reset
+
+**Objective**: Ensure the quiz resets or ends after reaching the score limit.
+
+**Test Steps**:
+
+- Login as user Clara
+
+- Start the quiz.
+
+- Answer 3 questions.
+
+- Observe if the quiz ends or restarts.
+
+**Expected**: After reaching 3/3 answers, quiz should reset or show a completion screen.
+
+**Actual**:
+Quiz continues incrementing score to 3/4, 6/6 instead of ending.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+## TC-6: Awareness section (Report Issue Redirection)
+### Test Case ID & Title: TC-6.2 – Report Issue Feedback Redirection
+
+**Objective**: Ensure logged-in users can access the report issue page.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Click the "Report Issue" button from the navigation menu.
+
+**Expected**: User is taken to the Report Issue page.
+
+**Actual**:
+User is redirected to the Feedback page.
+
+**Status**: Pass
+
+**Severity**: Medium
+
+**Priority**: High
+
+## TC-7: Feedback Validation Form 
+### Test Case ID & Title: TC-7.1 – Feedback Requires Pickup Request ID
+
+**Objective**: Ensure users must enter valid request ID to submit feedback.
+
+**Test Steps**:
+
+- Log in  as user Clara
+
+- Navigate to the Feedback section.
+
+- Enter the request ID and feedback.
+
+- Leave the request ID field blank.
+
+- Submit the form.
+
+**Expected**: Form shows an error requiring a valid request ID.
+
+**Actual**: Feedback not submitted; validation works but message is not user-friendly or intuitive.
+
+**Status**: Pass
+
+**Severity**: Minor
+
+**Priority**: Low
+
+## TC-7: Feedback Not Visible in Dashboard
+### Test Case ID & Title: TC-7.2 – Feedback Visibility
+
+**Objective**: Confirm user feedback is displayed or accessible post-submission.
+
+**Test Steps**:
+
+- Submit feedback with request ID.
+
+- Navigate to Dashboard to view.
+
+**Expected**: Feedback should be viewable in user interface.
+
+**Actual**: No feedback listing or confirmation is visible anywhere after submission.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+---
+
+## TC-7: Invalid Feedback ID
+### Test Case ID & Title: TC-7.3 – Invalid Request ID Accepted in Feedback Form
+
+**Objective**: Ensure the feedback form accepts only valid and owned request IDs.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Navigate to the "Feedback" section.
+
+- In the Request ID field, enter an ID like RE01234.
+
+- Enter valid feedback.
+
+- Submit the feedback form.
+
+**Expected**: System should reject the input and show an error like: "Invalid Request ID. You can only provide feedback on your own scheduled pickups."
+
+**Actual**: Feedback is accepted and saved even when the Request ID does not belong to the current user or is invalid.
+
+**Status**: Fail
+
+**Severity**: Critical
+
+**Priority**: High
+
+---
 # NON-FUNCTIONAL TEST CASES
 ## NTC-1: Page Load Performance on Dashboard
 ### Test Case ID & Title: NFTC-001 - Dashboard Load Performance
@@ -420,6 +775,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium 
+
 **Priority*(if failed)**: High
 
 
@@ -451,6 +807,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**:Fail
 
 **Severity** : High
+
 **Priority**: Medium
 
 ---
@@ -475,6 +832,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: High
+
 **Priority(if failed)**: High 
 
 ---
@@ -500,6 +858,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium
+
 **Priority**: Medium 
 
 ---
@@ -531,6 +890,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Fail
 
 **Severity**: Medium
+
 **Priority**: Medium 
 
 ---
@@ -553,6 +913,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium
+
 **Priority**: Medium
 
 ---
@@ -575,7 +936,201 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Fail
 
 **Severity**: High
+
 **Priority**: Critical
+
+
+
+---
+
+## NTC-8: Login Field Persistence after Logout
+### Test Case ID & Title: NFTC-8 - Login Field Persistence After Logout
+
+**Objective**: Ensure that user login fields (email and password) are cleared after logging out to protect user privacy and session integrity.
+
+**Test Steps**:
+
+- Log in user Clara.
+
+- Navigate through the app.
+
+- Click the Logout button.
+
+- Navigate to the login page, refresh the page.
+
+- Observe whether the email and password fields are pre-filled.
+
+**Expected**: Email and password fields should be empty on the login page.
+
+**Actual**: Email and password fields remain populated after logout and refresh(Firefox browser autofills).
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: Critical
+
+---
+
+
+
+*** Expected Result: *** Notifications reflect correct status; unread count updates
+*** Actual Result: *** No notification is posted
+*** Status: *** Done
+*** Severity/Priority: *** Low
+
+### TC-USER-004: Submit Feedback
+
+*** Objective: *** Verify feedback form works correctly
+
+*** Test Steps: ***
+
+- Login and navigate to “Feedback” section
+- Fill out form with subject and message
+- Click “Submit”
+
+*** Expected Result: *** Feedback sent successfully and confirmation message displayed
+*** Actual Result: *** Feedback sent successfully and confirmation message displayed
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-USER-005: Confirm Feedback Delivery
+
+*** Objective: *** Confirm feedback reaches is stored/reported properly
+
+*** Test Steps: ***
+
+- Submit feedback
+- Login as admin and check feedback panel
+
+*** Expected Result: *** Feedback appears under user’s entry with full details
+*** Actual Result: *** No feed back appears
+*** Status: *** Done
+*** Severity/Priority: ***: High
+
+### TC-USER-006: Admin Access to User List
+
+*** Objective: *** Ensure admin can view and manage user data
+
+*** Test Steps: ***
+
+- Login as admin
+- Navigate to “Dashboard” section
+- View user list with editing abilities
+
+*** Expected Result: *** User data loads successfully; admin tools available
+*** Actual Result: *** User data loads successfully; admin tools available
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+
+
+
+ ## Non-Performance Test Cases (LocalStorage-Based)
+
+### TC-PERF-LS-001: Page Load Time with localStorage Reads
+
+*** Objective: *** Ensure data retrieval from localStorage doesn’t degrade page load speed
+
+*** Test Steps: ***
+
+- Populate localStorage with pickup requests, user data
+- Reload dashboard and scheduling page
+
+*** Expected Result: *** Pages load within 3 seconds; stored data is rendered instantly
+*** Actual Result: *** Pages load within 3 seconds; stored data is rendered instantly
+*** Status: *** Done
+*** Severity/Priority: *** High
+
+### TC-PERF-LS-002: Stress Testing localStorage Limits
+
+*** Objective: *** Determine app stability when localStorage nears capacity
+
+*** Test Steps: ***
+
+- Create hundreds of pickup requests or feed entries
+- Confirm data persistence and UI responsiveness
+
+*** Expected Result: *** App doesn’t crash or freeze; alerts shown if storage is full
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: ***: Medium
+
+## Security Test Cases (LocalStorage Constraints)
+
+
+### TC-SEC-LS-001: Check Exposure of Sensitive Data in DevTools
+
+*** Objective: *** Ensure sensitive session/user data isn't stored in localStorage
+
+*** Test Steps: ***
+
+- Login and inspect localStorage via DevTools
+- Look for access tokens, emails, passwords
+
+*** Expected Result: *** No sensitive data stored; only non-critical info retained
+*** Actual Result: *** Sensitive data is stored and visible
+*** Status: *** Done
+*** Severity/Priority: *** Critical
+
+
+
+ read in logical order with meaningful labels
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Critical
+
+### TC-ACCESS-002: Keyboard Navigation Support
+
+*** Objective: *** Confirm keyboard-only users can fully interact with the app
+
+*** Test Steps: ***
+
+- Use Tab, Shift+Tab, Enter, Arrow keys to move through UI
+- Focus on forms, menus, modals, and dashboard cards
+
+*** Expected Result: *** Logical tab flow, visible focus indicators, all actions accessible without mouse
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** High
+
+### TC-ACCESS-003: Contrast Ratio Compliance
+
+*** Objective: *** Ensure text and UI elements meet WCAG AA (4.5:1) or AAA contrast ratios
+
+*** Test Steps: ***
+
+- Use accessibility checker (e.g., Axe, WAVE)
+- Scan text, buttons, icons, input fields
+
+*** Expected Result: *** All interactive elements pass contrast requirements
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** High
+
+### TC-ACCESS-004: Alt Text for Images and Icons
+
+*** Objective: *** Validate descriptive alt text is present for images and icons
+
+*** Test Steps: ***
+
+- Inspect blog posts, feed, dashboard icons
+- Hover or use screen reader to detect alt attribute
+
+*** Expected Result: *** All images have meaningful alt descriptions or role="presentation" where decorative
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
+
+### Cross-Browser Compatibility – Test Cases
+
+| Test Case ID   | Browser    | Platforms        | Description                                          | Expected Result                   | Severity/Priority |
+|----------------|------------|------------------|------------------------------------------------------|-----------------------------------|-------------------|
+| TC-CROSS-001   | Chrome     | Windows, Android | Load all pages and validate styling, functionality   | Smooth performance across devices | High              |
+| TC-CROSS-002   | Firefox    | Windows, macOS   | Test form inputs, dashboard, blog, feed              | Forms submit and render correctly | Medium            |
+| TC-CROSS-003   | Safari     | iOS, macOS       | Ensure layout and navigation work on mobile Safari   | Responsive design adapts properly | High              |
+| TC-CROSS-004   | Edge       | Windows          | Test localStorage retrieval and UI responsiveness    | Data persists and UI loads cleanly| Medium            |
+| TC-CROSS-005   | Opera      | Windows, Linux   | Check navigation and content rendering               | No layout breaks or script errors | Medium            |
 
 
 # AUTOMATED TEST CASES
@@ -619,9 +1174,6 @@ test('adds a new pickup request and persists it', () => {
 **Severity**: High 
 **Priority*(if failed)**: High
  
-
-
-
 
 
 
