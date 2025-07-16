@@ -167,24 +167,53 @@ Repeat process now with email as - Clara@gmail.com
 **Status** (Pass/Fail): Pass
 
 
-
-
-
-
 ## TC2: Waste Management Testing
 ### TCS-2: Main Operations around waste pickup and handling
 
-### TC-2.1 Validate date must be at least 24h in future
+### TC-2.1: Pickup and Scheduled Requests Not Displayed
+
+**Objective**: Ensure that users can view, edit, or cancel their pickup requests after submission.
+
+**Test Steps**:
+
+- Register and log in as a Clara.
+
+- Navigate to the "Schedule Pickup" form.
+
+- Enter valid name, email, and waste details.
+
+- Choose a future pickup date and submit.
+
+- Click on the profile button → "My Requests".
+
+- Check if the new pickup request appears.
+
+**Expected**:
+
+Scheduled pickup is visible in the "My Requests" section with correct status and actions (edit/cancel).
+
+**Actual**:
+
+“No waste pickup requests yet” is shown; user cannot view or manage submitted requests.
+
+**Status**: Fail
+
+**Severity**: Critical
+**Priority**: High
+
+
+### TC-2.2 Validate date must be at least 24h in future
 **Objective:** Ensure that system only allows dates atleast 24h in the future
 
 **Steps to Reproduce**:
 
-- Go to the Home tab of the CleanCity website.
-- Fill in the pickup request form with name(Jay), location(Eldoret), and waste type(Recyclable).
+- Go to the Schedule Pickup tab of the CleanCity website.
+
+- Fill in the pickup request form with name(Clara), location(Mombasa), and waste type(Recyclable).
+
 - For Preferred Pickup Date, choose a date in the past (2024-01-06).
+
 - Submit the form.
-
-
 
 **Expected Behavior**:
 
@@ -196,18 +225,17 @@ Repeat process now with email as - Clara@gmail.com
 - Form accepts and stores past dates like 2024-01-6
 - No restrictions on date picker or validation logic
 
-**Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Critical
+**Status**: Fail 
 
+**Severity**: Critical
+**Priority** : High
 
-
-
-### TC-2.2 Duplicate Pickup Requests for Same User, Date, and Location
+### TC-2.3 Duplicate Pickup Requests for Same User, Date, and Location
 **Objective**: Test that the system does not allow a user to submit multiple pickup requests for the same location and date, ensuring no scheduling conflicts or accidental duplicates
 
 **Steps to Reproduce**:
 
-- Submit a pickup request with user “Jay”, location “Eldoret”, date 2024-06-01 
+- Submit a pickup request with user “Clara”, location “Mombasa”, date 2024-06-01 
 
 - Submit another with the same details
 
@@ -222,20 +250,22 @@ System blocks duplicate submissions for same user, date, and location
 Two identical requests are accepted with different IDs
 
 **Status (Pass/Fail)**: Fail  
-**Severity/Priority (if failed)** : Major
 
 
+**Severity** : Major
+**Priority** : Medium
 
-
-
-### TC-2.3: Manage Pickup Requests (Modify & Cancel)
+### TC-2.4: Manage Pickup Requests (Modify & Cancel)
 **Objective**: Ensure that users can modify or cancel pickup requests directly from their dashboard.
 
 **Steps to Reproduce**
 
 - Log in as Clara.
+
 - Submit a pickup request (for 2025-08-09).
+
 - Navigate to the Dashboard.
+
 - Try to modify or cancel the request.
 
 
@@ -258,11 +288,13 @@ Two identical requests are accepted with different IDs
 No cancel button or logic is implemented
 
  **Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Critical
+
+ **Severity** : Critical
+ **Priority** : High
 
 
 
-### TC-2.4: Track Requests Progress
+### TC-2.5: Track Requests Progress
 
 **Objective**: Ensure that users can see live status updates of their pickup requests from the dashboard, reflecting the full request lifecycle ( Pending -Scheduled - Completed)
 
@@ -270,20 +302,20 @@ No cancel button or logic is implemented
 
 - Log in as Clara
 - Submit a pickup request
-- Admin changes the request status to “Scheduled”.
-- Refresh Dashboard - Status text updates
+- Refresh Dashboard 
 
 **Expected Behavior**:
 
-- Progress indicator
+- Progress indicator or message alert
 
 **Actual Behavior**:
 
-- The Admin gets an alert that status is updated
-- Plain text status (“Scheduled”) only for user
+- There is no alert or progress indicator
 
-**Status (Pass/Fail)**: Fail  
- **Severity/Priority (if failed)** : Major
+**Status (Pass/Fail)**: Fail 
+
+**Severity** : Major
+**Priority**: Medium
 
 
 ---
@@ -361,40 +393,186 @@ A new account is created using the unregistered email without proper verificatio
 
 **Severity/Priority (if failed)**: Critical / Highest
 
+---
 
-### TC-3.4: Pickup and Scheduled Requests Not Displayed
-### **Test Case ID & Title**: TC-3.4 – Scheduled Pickup Visibility
+## TC-4: Blog Filter Functionality
+### Test Case ID & Title: TC-4.1 – Blog Filter Feature
 
-**Objective**: Ensure that users can view, edit, or cancel their pickup requests after submission.
+**Objective**: Ensure blog category filters show relevant posts.
 
 **Test Steps**:
 
-Register and log in as a new user.
+- Login as Clara
 
-Navigate to the "Schedule Pickup" form.
+- Navigate to Blog section.
 
-Enter valid name, email, and waste details.
+- Select a specific Tags filter (“Recycling”).
 
-Choose a future pickup date and submit.
+- Observe the displayed blog posts.
 
-Click on the profile button → "My Requests".
+**Expected**: Only blog posts matching the selected category should be displayed.
 
-Check if the new pickup request appears.
+**Actual**: All blog posts continue to appear regardless of the selected filter.
 
-**Expected**:
+**Status**: Fail
 
-Scheduled pickup is visible in the "My Requests" section with correct status and actions (edit/cancel).
+**Severity**: High
 
-**Actual**:
-
-“No waste pickup requests yet” is shown; user cannot view or manage submitted requests.
-
-**Status (Pass/Fail)**: Fail
-
-**Severity/Priority (if failed)**: Critical / High
+**Priority**: High
 
 ---
 
+## TC-5: Community Post Visibility
+### Test Case ID & Title: TC-5.1 – Community Post Submission
+
+**Objective**: Validate that newly submitted community posts are visible.
+
+**Test Steps**:
+
+- Log in and go to the Community section.
+
+- Submit a valid new post.
+
+- Reload the community view.
+
+**Expected**: New post appears immediately under community posts.
+
+**Actual**: Post is submitted and visible after posting.
+
+**Status**: Pass
+
+**Severity**: High
+
+**Priority**: High
+
+---
+
+## TC-6: Awareness section (Quiz Score Loop Bug)
+### Test Case ID & Title: TC-6.1 – Quiz Score Reset
+
+**Objective**: Ensure the quiz resets or ends after reaching the score limit.
+
+**Test Steps**:
+
+- Login as user Clara
+
+- Start the quiz.
+
+- Answer 3 questions.
+
+- Observe if the quiz ends or restarts.
+
+**Expected**: After reaching 3/3 answers, quiz should reset or show a completion screen.
+
+**Actual**:
+Quiz continues incrementing score to 3/4, 6/6 instead of ending.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+## TC-6: Awareness section (Report Issue Redirection)
+### Test Case ID & Title: TC-6.2 – Report Issue Feedback Redirection
+
+**Objective**: Ensure logged-in users can access the report issue page.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Click the "Report Issue" button from the navigation menu.
+
+**Expected**: User is taken to the Report Issue page.
+
+**Actual**:
+User is redirected to the Feedback page.
+
+**Status**: Pass
+
+**Severity**: Medium
+
+**Priority**: High
+
+## TC-7: Feedback Validation Form 
+### Test Case ID & Title: TC-7.1 – Feedback Requires Pickup Request ID
+
+**Objective**: Ensure users must enter valid request ID to submit feedback.
+
+**Test Steps**:
+
+- Log in  as user Clara
+
+- Navigate to the Feedback section.
+
+- Enter the request ID and feedback.
+
+- Leave the request ID field blank.
+
+- Submit the form.
+
+**Expected**: Form shows an error requiring a valid request ID.
+
+**Actual**: Feedback not submitted; validation works but message is not user-friendly or intuitive.
+
+**Status**: Pass
+
+**Severity**: Minor
+
+**Priority**: Low
+
+## TC-7: Feedback Not Visible in Dashboard
+### Test Case ID & Title: TC-7.2 – Feedback Visibility
+
+**Objective**: Confirm user feedback is displayed or accessible post-submission.
+
+**Test Steps**:
+
+- Submit feedback with request ID.
+
+- Navigate to Dashboard to view.
+
+**Expected**: Feedback should be viewable in user interface.
+
+**Actual**: No feedback listing or confirmation is visible anywhere after submission.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+---
+
+## TC-7: Invalid Feedback ID
+### Test Case ID & Title: TC-7.3 – Invalid Request ID Accepted in Feedback Form
+
+**Objective**: Ensure the feedback form accepts only valid and owned request IDs.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Navigate to the "Feedback" section.
+
+- In the Request ID field, enter an ID like RE01234.
+
+- Enter valid feedback.
+
+- Submit the feedback form.
+
+**Expected**: System should reject the input and show an error like: "Invalid Request ID. You can only provide feedback on your own scheduled pickups."
+
+**Actual**: Feedback is accepted and saved even when the Request ID does not belong to the current user or is invalid.
+
+**Status**: Fail
+
+**Severity**: Critical
+
+**Priority**: High
+
+---
 # NON-FUNCTIONAL TEST CASES
 ## NTC-1: Page Load Performance on Dashboard
 ### Test Case ID & Title: NFTC-001 - Dashboard Load Performance
@@ -420,6 +598,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium 
+
 **Priority*(if failed)**: High
 
 
@@ -451,6 +630,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**:Fail
 
 **Severity** : High
+
 **Priority**: Medium
 
 ---
@@ -475,6 +655,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: High
+
 **Priority(if failed)**: High 
 
 ---
@@ -500,6 +681,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium
+
 **Priority**: Medium 
 
 ---
@@ -531,6 +713,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Fail
 
 **Severity**: Medium
+
 **Priority**: Medium 
 
 ---
@@ -553,6 +736,7 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Pass
 
 **Severity**: Medium
+
 **Priority**: Medium
 
 ---
@@ -575,9 +759,39 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Status**: Fail
 
 **Severity**: High
+
 **Priority**: Critical
 
+---
 
+## NTC-8: Login Field Persistence after Logout
+### Test Case ID & Title: NFTC-8 - Login Field Persistence After Logout
+
+**Objective**: Ensure that user login fields (email and password) are cleared after logging out to protect user privacy and session integrity.
+
+**Test Steps**:
+
+- Log in user Clara.
+
+- Navigate through the app.
+
+- Click the Logout button.
+
+- Navigate to the login page, refresh the page.
+
+- Observe whether the email and password fields are pre-filled.
+
+**Expected**: Email and password fields should be empty on the login page.
+
+**Actual**: Email and password fields remain populated after logout and refresh(Firefox browser autofills).
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: Critical
+
+---
 
 
 
