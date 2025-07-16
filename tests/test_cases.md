@@ -578,7 +578,47 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 **Priority**: Critical
 
 
+# AUTOMATED TEST CASES
+## ATC-1: Data Management
+### Test Case ID & Title: AFTC-001 - Data in Local Storage
 
+**Objective**: Ensure Data is saved and retrieved from localStorage correctly
+
+##  Unit Tests for dataService Module
+
+These tests verify data persistence, error handling, and user management
+
+| Test ID | Test Description                                                | Status |
+|---------|------------------------------------------------------------------|--------|
+| DS-TC-01 | Adds a new pickup request and ensures it's saved to storage     | Pass     |
+| DS-TC-02 | Gracefully handles corrupted JSON in localStorage               | Pass     |
+| DS-TC-03 | Prevents adding duplicate users with the same email             | Pass     |
+| DS-TC-04 | Confirms authentication and admin role recognition from session | Pass     |
+
+---
+
+### Test Snippets
+
+####  DS-TC-01: Add Pickup Request
+```js
+test('adds a new pickup request and persists it', () => {
+  localStorage.clear();
+  dataService.clearAllData();
+  const requestData = {
+    fullName: 'Test User',
+    location: 'Nairobi',
+    wasteType: 'General Waste',
+    preferredDate: '2024-07-20',
+  };
+  const added = dataService.addPickupRequest(requestData);
+  const requests = dataService.getAllPickupRequests();
+  expect(requests).toContainEqual(added);
+});
+
+
+**Severity**: High 
+**Priority*(if failed)**: High
+ 
 
 
 
