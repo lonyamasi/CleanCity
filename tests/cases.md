@@ -1,22 +1,7 @@
-#  CleanCity –  Test Cases
-
- Test Case Format  
-
-Each test case will include:  
-- **Test Case ID & Title**  
-- **Objective**   
-- **Test Steps**  
-- **Expected Result**  
-- **Actual Result**  
-- **Status (Pass/Fail)**  
-- **Severity/Priority (if failed)**  
-
----
-
-
-
-
- ## Authentication System and Access control – Test Cases
+ 
+ 
+ 
+ ## Authentication System – Test Cases
 
 ### TC-AUTH-001: User Registration with Valid Inputs
 
@@ -29,9 +14,9 @@ Each test case will include:
 - Click “Register”
 
 *** Expected Result:** User account is created and a success message is displayed
-*** Actual Result:** User account is created and a success message is displayed
-Status: Done
-Severity/Priority(if failed): High
+*** Actual Result:** Pending
+Status: Pending
+Severity/Priority: High
 
 ### TC-AUTH-002: User Registration with Invalid Inputs
 
@@ -39,13 +24,13 @@ Severity/Priority(if failed): High
 
 *** Test Steps:**
 
-- Enter invalid email format and weak password, and whitespace on name
+- Enter invalid email format and weak password
 - Leave required fields blank
 - Click “Register”
 
 *** Expected Result:** Validation errors are displayed and account creation is blocked
-*** Actual Result:** No validation error, account is created
-*** Status:** Done
+*** Actual Result:** Pending
+*** Status:** Pending
 *** Severity/Priority:** High
 
 ### TC-AUTH-003: Login with Correct Credentials
@@ -58,9 +43,9 @@ Severity/Priority(if failed): High
 - Enter valid registered email and password
 - Click “Login”
 
-***Expected Result:** User is authenticated and redirected to user profile
-***Actual Result:** User is authenticated and redirected to user profile
-***Status:** Done
+***Expected Result:** User is authenticated and redirected to dashboard
+***Actual Result:** Pending
+***Status:** Pending
 *** Severity/Priority:** High
 
 ### TC-AUTH-004: Login with Incorrect Credentials
@@ -72,9 +57,9 @@ Severity/Priority(if failed): High
 - Click “Login”
 
 *** Expected Result:*** Error message “Invalid credentials” is shown
-*** Actual Result:*** User is able to log in
-*** Status:** Done
-*** Severity/Priority: *** Critical
+*** Actual Result:*** Pending
+*** Status:*** Pending
+*** Severity/Priority: *** Medium
 
 ### TC-AUTH-005: Password Strength Enforcement
 
@@ -86,8 +71,8 @@ Severity/Priority(if failed): High
 - Click “Register”
 
 *** Expected Result:*** Error message prompts for stronger password
-*** Actual Result: *** No error message prompt
-*** Status: ***  Done
+*** Actual Result: *** Pending
+*** Status: ***  Pending
 *** Severity/Priority: *** High
 
 ### TC-AUTH-006: Secure Session Start and Expiration
@@ -117,8 +102,8 @@ Severity/Priority(if failed): High
 - Repeat steps after logging in as Admin
 
 *** Expected Result: *** Access denied for User, granted for Admin
-*** Actual Result: *** Access denied for User, granted for Admin
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Critical
 
 ## WASTE MANAGEMENT – Test Cases
@@ -131,12 +116,12 @@ Severity/Priority(if failed): High
 
 - Log in as user
 - Navigate to “Schedule Pickup” page
-- Fill form: Full Name, Email,pickup location,waste type,preferred pick-up date,additional description
-- Click “Submit Request”
+- Fill form: location, date, waste type, contact info
+- Click “Submit”
 
 *** Expected Result: ***  Request is created and confirmation message shown
-*** Actual Result: ***  Request is created and confirmation message shown
-*** Status: ***  Done
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
 *** Severity/Priority: ***  High
 
 ### TC-WASTE-002: Update Scheduled Pickup Request
@@ -152,8 +137,8 @@ Severity/Priority(if failed): High
 - Save changes
 
 *** Expected Result: ***  Request is updated successfully
-*** Actual Result: ***  Request is not shown, cannot be updated
-***  Status:  *** Done
+*** Actual Result: ***  Pending
+***  Status:  *** Pending
 ***  Severity/Priority: ***  Critical
 
 ### TC-WASTE-003: Cancel Scheduled Pickup Request
@@ -168,9 +153,9 @@ Severity/Priority(if failed): High
 - Confirm cancellation
 
 *** Expected Result: ***  Request status set to “Cancelled” and removed from active list
-*** Actual Result: ***  Requests not shown, cannot be updated
-*** Status: ***  Done
-***  Severity/Priority: ***  Critical
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
+***  Severity/Priority: ***  High
 
 ### TC-WASTE-004: Track Request Status
 
@@ -182,8 +167,8 @@ Severity/Priority(if failed): High
 - Login at intervals to check request status
 
 *** Expected Result: ***  Request progresses from “Pending” → “In Progress” → “Completed”
-*** Actual Result: ***  : No request is logged in the first place
-*** Status: ***  Done
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
 *** Severity/Priority: ***  High
 
 ### TC-WASTE-005: Form Validation – Missing Inputs
@@ -196,9 +181,9 @@ Severity/Priority(if failed): High
 - Leave location or waste type blank
 - Click “Submit”
 
-*** Expected Result: ***  Field error messages shown;
-*** Actual Result: *** Field error messages shown;
-*** Status: ***  Done
+*** Expected Result: ***  Field error messages shown; form not submitted
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
 *** Severity/Priority: ***  Critical
 
 ### TC-WASTE-006: Request Persistence with localStorage
@@ -229,33 +214,22 @@ Severity/Priority(if failed): High
 - Submit form
 
 *** Expected Result: ***  Validation error shown; form not submitted
-*** Actual Result: ***  Scheduling is done with past date
-*** Status: ***  Done
-*** Severity/Priority: ***  Critical
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
+*** Severity/Priority: ***  High
 
+### TC-WASTE-011: Schedule Pickup with Edge Location Values
 
- ### TC-WASTE-010: Duplicate Pickup Request by Same User
+*** Objective: ***  Validate address field handles edge-case values like coordinates or special characters
+*** Test Steps:*** 
 
-*** Objective: *** Verify if the system allows a user to submit two identical pickup requests
+- Enter location like “@@@!” or GPS coordinates
+- Submit pickup request
 
-*** Test Steps: ***
-
-- Login as a registered user
-- Navigate to “Schedule Pickup” form
-- Submit a request with specific values (e.g. location: “Green Lane”, date: “2025-07-15”, waste type: “Organic”)
-- Without changing any fields, submit the same request again
-- View request list or confirmation status
-
-*** Expected Result: ***
-- One of the following should occur:
-- Duplicate request is blocked with a validation message: “You already submitted a request with similar details”
-- System allows it but flags it visually or merges the requests
-
-
-*** Actual Result: *** All requests submitted
-*** Status:*** Done
-*** Severity/Priority: *** High
-
+*** Expected Result: ***  Either proper validation or intelligent auto-correction
+*** Actual Result: ***  Pending
+*** Status: ***  Pending
+*** Severity/Priority: ***  Medium
 
 
 ## DASHBOARD AND ANALYTICS – Test Cases
@@ -269,8 +243,8 @@ Severity/Priority(if failed): High
 - Wait for redirect or navigate to /dashboard
 
 *** Expected Result: ***  Dashboard page loads with personalized components
-*** Actual Result: ***  Profile with personalized components loads
-*** Status: *** Done
+*** Actual Result: ***  Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
 ### TC-DASH-002: Statistics Accuracy Based on User Activity
@@ -283,8 +257,8 @@ Severity/Priority(if failed): High
 - View dashboard after each action
 
 *** Expected Result: *** Count and statistics update to reflect performed actions
-*** Actual Result: *** No updates on the performed actions
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
 ### TC-DASH-003: Chart Rendering with Varying Data Sets
@@ -298,9 +272,9 @@ Severity/Priority(if failed): High
 - Observe chart rendering
 
 *** Expected Result: *** Charts adjust without breaking layout; appropriate fallback for empty sets
-*** Actual Result: *** No charts are rendered
-*** Status: *** Done
-*** Severity/Priority: *** High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
 
 ### TC-DASH-004: Leaderboard Update Based on User Actions
 
@@ -344,12 +318,11 @@ Severity/Priority(if failed): High
 - Click “Publish”
 
 *** Expected Result: *** Article is saved and appears in blog feed
-*** Actual Result: *** No blog creation section
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
-
-### TC-CONTENT-002: Admin – Edit Existing Blog Article
+✏️ TC-CONTENT-002: Admin – Edit Existing Blog Article
 *** Objective: *** Ensure article content can be modified by admin
 
 *** Test Steps: ***
@@ -360,11 +333,11 @@ Severity/Priority(if failed): High
 - Save changes
 
 *** Expected Result: *** Changes reflected in the live article view
-*** Actual Result: *** No editing features of blogs
-*** Status: *** Done
-*** Severity/Priority: *** High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
 
-### TC-CONTENT-003: Admin – Delete Blog Article
+🗑️ TC-CONTENT-003: Admin – Delete Blog Article
 *** Objective: *** Confirm admins can remove blog posts
 
 *** Test Steps: ***
@@ -373,12 +346,12 @@ Severity/Priority(if failed): High
 - Locate published article
 - Click “Delete” and confirm action
 
-*** Expected Result: *** Article removed from blog feed
-*** Actual Result: *** No editing/ deleting features on blogs
-*** Status: *** Done
+*** Expected Result: *** Article removed from blog feed and backend database
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
-### TC-CONTENT-004: User – Submit Blog Comment
+💬 TC-CONTENT-004: User – Submit Blog Comment
 *** Objective: *** Validate users can comment on articles
 
 *** Test Steps: ***
@@ -388,11 +361,11 @@ Severity/Priority(if failed): High
 - Write and submit a comment
 
 *** Expected Result: *** Comment appears below article with timestamp and user ID
-*** Actual Result: *** Comment appears but disappears on reload
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Medium
 
-### TC-CONTENT-005: View Blog Comments
+👀 TC-CONTENT-005: View Blog Comments
 
 *** Objective: *** Ensure all users can view article comments
 
@@ -401,11 +374,11 @@ Severity/Priority(if failed): High
 - Scroll to comment section
 
 *** Expected Result: *** Comments load properly and display in chronological order
-*** Actual Result: *** No comments displayed including one from user himslef
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Low
 
-## TC-CONTENT-006: Post to Community Feed
+📣 TC-CONTENT-006: Post to Community Feed
 
 *** Objective: *** Verify that users can post text, images, or links to the feed
 
@@ -417,11 +390,11 @@ Severity/Priority(if failed): High
 - Click “Post”
 
 *** Expected Result: *** Content appears in feed and is visible to all users
-*** Actual Result: *** Content appears in feed and is visible to all users
-*** Status: *** Done
-*** Severity/Priority: *** High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
 
-### TC-CONTENT-007: Feed Interactions – Likes & Comments
+👍 TC-CONTENT-007: Feed Interactions – Likes & Comments
 
 *** Objective: *** Confirm likes and comments function on community posts
 
@@ -432,11 +405,11 @@ Severity/Priority(if failed): High
 - Reload feed
 
 *** Expected Result: *** Like count updates and comment displays correctly
-*** Actual Result: *** Like count updates and comment displays correctly
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Medium
 
-### TC-CONTENT-008: Load Awareness Content (Tips, Quizzes, Infographics)
+🎓 TC-CONTENT-008: Load Awareness Content (Tips, Quizzes, Infographics)
 
 *** Objective: *** Ensure awareness section loads properly across formats
 
@@ -446,13 +419,13 @@ Severity/Priority(if failed): High
 - View tips, take a quiz, and open an infographic
 
 *** Expected Result: *** Content loads without errors; quizzes are interactive
-*** Actual Result: *** Content loads without errors; quizzes are interactive
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Medium
 
- ## User Management – Functional Test Cases
+ User Management – Functional Test Cases
 
-### TC-USER-001: Update Profile Information
+📝 TC-USER-001: Update Profile Information
 
 *** Objective: *** Verify users can update their personal details successfully
 
@@ -460,15 +433,15 @@ Severity/Priority(if failed): High
 
 - Login as a registered user
 - Navigate to “Profile Settings”
-- Modify fields (name, email)
+- Modify fields (name, email, password, preferences)
 - Click “Save”
 
 *** Expected Result: *** Updated information is saved and reflected immediately
-*** Actual Result: *** Updated information is saved and reflected immediately
-*** Status: *** Done
-*** Severity/Priority: ***: High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: ***: Medium
 
-### TC-USER-002: Invalid Profile Inputs
+🎨 TC-USER-002: Invalid Profile Inputs
 
 *** Objective: *** Confirm validation errors trigger when updating with invalid data
 
@@ -478,11 +451,11 @@ Severity/Priority(if failed): High
 - Click “Save”
 
 *** Expected Result: *** Errors prevent saving; appropriate validation messages shown
-*** Actual Result: *** No errors, invalid data accepted
-*** Status: *** Done
-*** Severity/Priority: *** High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
 
-### TC-USER-003: Access Notifications (Read/Unread)
+🔔 TC-USER-003: Access Notifications (Read/Unread)
 
 *** Objective: *** Ensure users can view and manage notifications properly
 
@@ -493,11 +466,11 @@ Severity/Priority(if failed): High
 - Mark notifications as “Read” or delete them
 
 *** Expected Result: *** Notifications reflect correct status; unread count updates
-*** Actual Result: *** No notification is posted
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** Low
 
-### TC-USER-004: Submit Feedback
+📤 TC-USER-004: Submit Feedback
 
 *** Objective: *** Verify feedback form works correctly
 
@@ -508,13 +481,13 @@ Severity/Priority(if failed): High
 - Click “Submit”
 
 *** Expected Result: *** Feedback sent successfully and confirmation message displayed
-*** Actual Result: *** Feedback sent successfully and confirmation message displayed
-*** Status: *** Done
-*** Severity/Priority: *** High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
 
-### TC-USER-005: Confirm Feedback Delivery
+✅ TC-USER-005: Confirm Feedback Delivery
 
-*** Objective: *** Confirm feedback reaches is stored/reported properly
+*** Objective: *** Confirm feedback reaches backend and is stored/reported properly
 
 *** Test Steps: ***
 
@@ -522,31 +495,43 @@ Severity/Priority(if failed): High
 - Login as admin and check feedback panel
 
 *** Expected Result: *** Feedback appears under user’s entry with full details
-*** Actual Result: *** No feed back appears
-*** Status: *** Done
-*** Severity/Priority: ***: High
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: ***: Medium
 
-### TC-USER-006: Admin Access to User List
+🛂 TC-USER-006: Admin Access to User List
 
 *** Objective: *** Ensure admin can view and manage user data
 
 *** Test Steps: ***
 
 - Login as admin
-- Navigate to “Dashboard” section
-- View user list with editing abilities
+- Navigate to “User Management” section
+- View user list with pagination and filters
 
 *** Expected Result: *** User data loads successfully; admin tools available
-*** Actual Result: *** User data loads successfully; admin tools available
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** High
+
+📈 TC-USER-007: Admin View of Activity Reports
+
+*** Objective: *** Confirm admin can access detailed activity logs and reporting
+
+*** Test Steps: ***
+
+- Login as admin
+- Open analytics or activity module
+- Filter by date range, user type, actions
+
+*** Expected Result: *** Accurate report generated and exportable if designed to be
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
 
-
-
- ## Non-Performance Test Cases (LocalStorage-Based)
-
-### TC-PERF-LS-001: Page Load Time with localStorage Reads
+ Performance Test Cases (LocalStorage-Based)
+⏱️ TC-PERF-LS-001: Page Load Time with localStorage Reads
 
 *** Objective: *** Ensure data retrieval from localStorage doesn’t degrade page load speed
 
@@ -556,11 +541,11 @@ Severity/Priority(if failed): High
 - Reload dashboard and scheduling page
 
 *** Expected Result: *** Pages load within 3 seconds; stored data is rendered instantly
-*** Actual Result: *** Pages load within 3 seconds; stored data is rendered instantly
-*** Status: *** Done
+*** Actual Result: *** Pending
+*** Status: *** Pending
 *** Severity/Priority: *** High
 
-### TC-PERF-LS-002: Stress Testing localStorage Limits
+🧮 TC-PERF-LS-002: Stress Testing localStorage Limits
 
 *** Objective: *** Determine app stability when localStorage nears capacity
 
@@ -574,10 +559,23 @@ Severity/Priority(if failed): High
 *** Status: *** Pending
 *** Severity/Priority: ***: Medium
 
-## Security Test Cases (LocalStorage Constraints)
+🔒 Security Test Cases (LocalStorage Constraints)
 
+🛡️ TC-SEC-LS-001: Validate Input Sanitization for localStorage Writes
 
-### TC-SEC-LS-001: Check Exposure of Sensitive Data in DevTools
+*** Objective: *** Prevent malicious content injection when writing to localStorage
+
+*** Test Steps: ***
+
+- Add <script> tags or SQL-like inputs to form fields
+- Save data to localStorage
+
+*** Expected Result: *** Input is sanitized; data stored as plain text without executable scripts
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Critical
+
+🧨 TC-SEC-LS-002: Check Exposure of Sensitive Data in DevTools
 
 *** Objective: *** Ensure sensitive session/user data isn't stored in localStorage
 
@@ -587,18 +585,62 @@ Severity/Priority(if failed): High
 - Look for access tokens, emails, passwords
 
 *** Expected Result: *** No sensitive data stored; only non-critical info retained
-*** Actual Result: *** Sensitive data is stored and visible
-*** Status: *** Done
-*** Severity/Priority: *** Critical
-
-
-
- read in logical order with meaningful labels
 *** Actual Result: *** Pending
 *** Status: *** Pending
 *** Severity/Priority: *** Critical
 
-### TC-ACCESS-002: Keyboard Navigation Support
+
+
+🙂 Usability Test Cases (LocalStorage-Enhanced UX)
+
+✨ TC-USABILITY-LS-001: Retain User Progress Across Sessions
+
+*** Objective: *** Confirm partial form inputs persist using localStorage
+
+*** Test Steps: ***
+
+- Start filling out a request or feedback form
+- Refresh page or close browser
+- Reopen app
+
+*** Expected Result: *** Previously entered data restored from localStorage
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Medium
+
+
+🧩 TC-USABILITY-LS-002: localStorage Sync Consistency
+
+*** Objective: *** Validate UI consistently reflects data stored locally
+
+*** Test Steps: ***
+
+- Save or update pickup request
+- Navigate to another section and return
+
+*** Expected Result: *** Data rendered accurately every time; no mismatch
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Low
+
+Accessibility (WCAG 2.1) – Test Cases
+
+🧏 TC-ACCESS-001: Screen Reader Compatibility
+
+*** Objective: *** Verify screen readers can accurately interpret and navigate page content
+
+*** Test Steps: ***
+
+- Open app using NVDA, JAWS, or VoiceOver
+- Navigate all key pages: dashboard, forms, blog, feed
+- Check label reading and content flow
+
+*** Expected Result: *** All elements are read in logical order with meaningful labels
+*** Actual Result: *** Pending
+*** Status: *** Pending
+*** Severity/Priority: *** Critical
+
+🎹 TC-ACCESS-002: Keyboard Navigation Support
 
 *** Objective: *** Confirm keyboard-only users can fully interact with the app
 
@@ -612,7 +654,7 @@ Severity/Priority(if failed): High
 *** Status: *** Pending
 *** Severity/Priority: *** High
 
-### TC-ACCESS-003: Contrast Ratio Compliance
+🎨 TC-ACCESS-003: Contrast Ratio Compliance
 
 *** Objective: *** Ensure text and UI elements meet WCAG AA (4.5:1) or AAA contrast ratios
 
@@ -626,7 +668,7 @@ Severity/Priority(if failed): High
 *** Status: *** Pending
 *** Severity/Priority: *** High
 
-### TC-ACCESS-004: Alt Text for Images and Icons
+🖼️ TC-ACCESS-004: Alt Text for Images and Icons
 
 *** Objective: *** Validate descriptive alt text is present for images and icons
 
@@ -640,7 +682,7 @@ Severity/Priority(if failed): High
 *** Status: *** Pending
 *** Severity/Priority: *** Medium
 
-### Cross-Browser Compatibility – Test Cases
+## 🌐 Cross-Browser Compatibility – Test Cases
 
 | Test Case ID   | Browser    | Platforms        | Description                                          | Expected Result                   | Severity/Priority |
 |----------------|------------|------------------|------------------------------------------------------|-----------------------------------|-------------------|
@@ -649,14 +691,4 @@ Severity/Priority(if failed): High
 | TC-CROSS-003   | Safari     | iOS, macOS       | Ensure layout and navigation work on mobile Safari   | Responsive design adapts properly | High              |
 | TC-CROSS-004   | Edge       | Windows          | Test localStorage retrieval and UI responsiveness    | Data persists and UI loads cleanly| Medium            |
 | TC-CROSS-005   | Opera      | Windows, Linux   | Check navigation and content rendering               | No layout breaks or script errors | Medium            |
-
-
-
-
-
-
-
-
-
-
 

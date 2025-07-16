@@ -16,10 +16,107 @@ Each defect log will include:
 
 ---
 
+
+## DF1: Authentication and Access control
+### DFL-1.1:Invalid logins
+**Related Test Case**: TC-AUTH-002: User Registration with Invalid Inputs
+
+### Description
+The email is not case-sensitive, example;  Clara@gmail.com should be same as clara@gmail.com
+
+### Environment: 
+Chrome
+
+### Steps to Reproduce
+- Click register button
+- Enter full name - Clara
+- Enter email - clara@gmail.com
+- Enter password 
+- Register
+- Repeat process now with email as - Clara@gmail.com
+
+
+### Expected
+Error; email is already registered
+
+### Actual 
+Creates two  different users
+
+### Severity/Priority  
+- **Severity**: Major  
+- **Priority**: High  
+
+
+
+### DFL-1.2:Invalid email characters
+**Related Test Case**: TC-AUTH-002: User Registration with Invalid Inputs
+
+
+### Description
+Email registers with invalid characters which do not adhere with the standard structures
+
+### Environment
+
+### Steps to Reproduce
+- Click the register button
+- Enter full name
+- Enter email address as - earl#!@gmail.com
+- Create password, confirm password 
+- Click create account.
+
+### Expected vs Actual
+
+
+|Expected                       | Actual                        |
+|-------------------------------|-------------------------------|
+|Error pops up, email is invalid|Creates account with this email|
+
+### Severity/Priority  
+- **Severity**: Major  
+- **Priority**: Medium 
+
+### DFL-1.3:Password input accepts less than 8 characters
+**Related Test Case**: TC-AUTH-005: Password Strength Enforcement
+
+### Description
+Requirement is that password should be atleast 8 characters, password inputs accepts less than 8 characters
+
+
+### Environment
+Edge
+
+### Steps to Reproduce
+- Click Register on Nav bar
+- Full Name: Sayari Leo
+- Email: sayari@gmail.com
+- password (Enter a password with 7 or less characters eg): say123
+- Confirm Password: say123
+
+## Expected vs Actual
+*** Expected:*** Error,password must be 8 characters long
+*** Actual: *** User is able to proceed with registration
+
+
+
+### TC-AUTH-004: Login with Incorrect Credentials
+
+*** Objective:** Ensure login is blocked with incorrect credentials
+
+*** Test Steps:***
+- Enter registered email and incorrect password
+- Click “Login”
+
+*** Expected Result:*** Error message “Invalid credentials” is shown
+*** Actual Result:*** User is able to log in
+*** Status:** Done
+*** Severity/Priority: *** Critical
+
+
+
 ## DF: Waste Management
-### DFL-1: Main Operations around waste pickup and handling
-### DFL-1.1: Application accepts past dates and even last year for waste pickup scheduling
-**Related Test Case**: TC-2.1 **Validate date must be at least 24h in future**  
+### DFL-2: Main Operations around waste pickup and handling
+### DFL-2.1: Application accepts past dates and even last year for waste pickup scheduling
+**Related Test Case**:  TC-WASTE-009: Scheduling with Past Date 
 
 ### Description  
 The waste pickup form allows users to select and submit a preferred pickup date that is in the past, including last year, which is illogical for future service requests.
@@ -44,14 +141,11 @@ System accepts and stores past dates like 2024-01-06 there are no restrictions o
 [DFL-1.1](https://github.com/user-attachments/assets/0dc4bc87-0fd0-4fd8-bd1a-e98ff79644dd)
 
 
-### Severity/Priority  
-- **Severity**: Major  
-- **Priority**: High  
 
 ---
 
-### DFL-1.2: Duplicate pickup requests allowed for the same user, location, and date
-**Related Test Case**: TC-2.2**Duplicate Pickup Requests for Same User, Date, and Location**
+### DFL-2.2: Duplicate pickup requests allowed for the same user, location, and date
+**Related Test Case**:  TC-WASTE-011: Duplicate Pickup Request by Same User
 
 ### Description  
 The system permits multiple identical waste pickup requests from the same user for the same date and location, leading to possible overbooking and logistical errors.
@@ -80,8 +174,8 @@ System accepts the duplicate request and assigns it a new request ID.
 
 ---
 
-### DFL-1.3: User cannot Modify or Cancel Pickup Requests
-**Related Test Case**: TC-2.3 **Manage Pickup Requests (Modify & Cancel)**
+### DFL-2.3: User cannot Modify or Cancel Pickup Requests
+**Related Test Case**:TC-WASTE-002: Update Scheduled Pickup Request & TC-WASTE-003: Cancel Scheduled Pickup Request
 
 ### Description  
 The dashboard interface does not provide any options (buttons, links, or forms) for users to update or cancel pickup requests. This restricts the user from correcting mistakes (such as wrong date or location) or cancelling requests they no longer need. This directly affects user experience and system flexibility.
@@ -110,7 +204,7 @@ System has no "Edit" button to modify request and has no "Cancel" button to dele
 
 ---
 
-### DFL-1.4: No progress indicator or visual status tracking on the user dashboard
+### DFL-2.4: No progress indicator or visual status tracking on the user dashboard
 **Related Test Case**: TC-2.4 **Track Requests Progress**
 
 ### Description  
@@ -139,7 +233,7 @@ The Admin gets an alert that status is updated but the user gets plain text stat
 ---
 
 ## DF 2: Dashboard and analytics
-### DFL-2.1: User Dashboard & Gamification Not Updating After User Activities
+### DFL-3.1: User Dashboard & Gamification Not Updating After User Activities
 **Related Test Case**: TC-3.1 
 
 ### Description  
@@ -171,7 +265,7 @@ Only community post count updates.
 - **Priority**: Medium  
 
 
-### DFL-2.2: Dashboard Accessible Without Login
+### DFL-3.2: Dashboard Accessible Without Login
 **Related Test Case**: TC-3.3 
 
 ### Description  
@@ -202,7 +296,7 @@ Dashboard accessible and creates new account.
 - **Priority**: Highest  
 
 
-### DFL-2.3: Visual Analytics Not Displaying Data
+### DFL-3.3: Visual Analytics Not Displaying Data
 **Related Test Case: TC-3.2**
 **Description**
 The dashboard analytics section does not show the activities of the user. Despite users performing actions like posting in the community feed or scheduling pickups, the analytics do not update to reflect these actions. Additionally, the export feature is unavailable, making it difficult to analyze or retain activity records.
@@ -219,7 +313,7 @@ The dashboard analytics section does not show the activities of the user. Despit
 **Expected Result**
 Visual analytics should show up-to-date user activities in chart format. Charts should display data such as most active users, completed pickups, posts, and blog trends. An export option (CSV/PDF) should be available and functional.
 
-**Actual Result**
+**Actual Result**h
 Analytics section does not show updated data, despite completed user actions. Export functionality is missing or inaccessible.
 
 
@@ -230,14 +324,14 @@ Analytics section does not show updated data, despite completed user actions. Ex
 
 
 
-### DFL-2.4: Pickup and Scheduled Requests Not Displayed
+### DFL-3.4: Pickup and Scheduled Requests Not Displayed
 **Related Test Case**: TC-3.4
 
 ### Description  
 User is not able to view, edit or cancel their scheduled requests, whether recent or history.
 
 ### Steps to Reproduce  
-
+t5
 - Click on the schedule pickup as newuser.
 
 - Input your name, email and details of the waste.
@@ -245,10 +339,10 @@ User is not able to view, edit or cancel their scheduled requests, whether recen
 - Set the preferred date, should not be in past and submit request.
 
 - Check on profile button then my requests button to view the scheduled requests status.
-   
+   d1
 
 ### Expected Result  
-On submitting, user should be able to check my requests to see the requests status
+On submitting, user should be able to check my requests to see the requests statusg
 
 ### Actual Result  
 My requests on users profile shows No waste pickup requests yet.
