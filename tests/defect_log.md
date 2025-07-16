@@ -257,3 +257,79 @@ My requests on users profile shows No waste pickup requests yet.
 ### Severity/Priority  
 - **Severity**: Critical  
 - **Priority**: High 
+
+---
+
+### DFL-3: Navigation Bar Overlaps Content on Mobile Devices
+**Related Test Case**: NFTC-002 - **Responsive Design**
+
+### Description  
+On screen widths below **750px**, the navigation bar does not collapse, causing it to overlap main page content. This makes the application unusable on mobile devices, particularly at common breakpoints like **375px** (iPhone) and **414px** (large phones).
+
+### Steps to Reproduce  
+
+1. Open the website on Chrome DevTools using the Device Toggle icon(responsive mode).
+
+2. Test screen widths from **320px to 1440px** manually adjusting the width.
+
+3. Observe how navigation and content behave at key breakpoints:
+
+   * 320px (small phones)
+   * 375px (iPhones)
+   * 414px (larger phones)
+   * 768px (tablets)
+   * 1024px+ (laptops/desktops)  
+
+### Expected Result  
+Navigation bar should collapse or reposition (use of hamburger menu) to fit the smaller screen without overlapping or hiding the content.
+
+### Actual Result  
+The navigation bar remains in full width and overlaps the main content, preventing interaction and readability on screen widths below 750px.
+
+### Evidence  
+[DFL-3](CleanCity/tests/Evidence/Responsiveness.mp4)
+
+### Severity/Priority  
+- **Severity**: High  
+- **Priority**: Medium
+
+---
+
+### DFL-3: Low Contrast and Inconsistent Font Usage
+**Related Test Case**: NFTC-5 - **Font Readability and Color Contrast Compliance**
+
+### Description  
+The application uses foreground text colors (ash gray) on white backgrounds that fail WCAG 2.1 contrast requirements also inconsistent use of Segoe UI, Arial,Monospace and cursive bold fonts across sections impacts readability and visual consistency for users with low vision.
+
+### Steps to Reproduce  
+
+- Load the website.
+
+- Use Chrome Dev Tools-> Lighthouse-> Accessibility to test contrast ratios between text and background.
+
+- Examine font sizes and font styles used across headings, buttons, labels, and body text using Fonts Ninja.
+
+- Identify any inconsistent or low-contrast color usage affecting readability.
+
+### Expected Result  
+All text should meet at least 4.5:1 contrast ratio for normal text, 3:1 for bold text, the minimum font size should be 14px for optimal readability,the used font should be constant all through.
+
+### Actual Result  
+- Text appears in various colors including light greenish, ash gray, dark blue, and black.
+
+- The light greenish and ash gray text fail contrast requirements against the white background (contrast ratio < 4.5:1).
+
+- Some UI text (placeholders-> 1 of 3) uses a 12px font size, which may cause readability issues, especially for users with low vision.
+
+- Font families include Segoe UI, Arial, Monospace and cursive bold, creating inconsistency across UI sections.
+
+### Evidence  
+[DFL-4.1](CleanCity/tests/Evidence/Usability.mp4)
+[DFL-4.2](CleanCity/tests/Evidence/Fonts-usability.mp4)
+
+### Severity/Priority  
+- **Severity**: Medium  
+- **Priority**: Medium
+
+---
+

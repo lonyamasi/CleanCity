@@ -393,6 +393,194 @@ Scheduled pickup is visible in the "My Requests" section with correct status and
 
 **Severity/Priority (if failed)**: Critical / High
 
+---
+
+# NON-FUNCTIONAL TEST CASES
+## NTC-1: Page Load Performance on Dashboard
+### Test Case ID & Title: NFTC-001 - Dashboard Load Performance
+
+**Objective**: Ensure dashboard loads under 2 seconds with <100 pickup requests.
+
+**Test Steps**:
+
+- Login as user Clra.
+
+- Navigate to the dashboard page.
+
+- Open Chrome DevTools → Performance tab.
+
+- Record the page load timeline.
+
+- Observe Largest Contentful Paint (LCP) time and overall load duration.
+
+**Expected**: Dashboard should load within 2 seconds.
+
+**Actual**: Load time is 1.38 seconds.
+
+**Status**: Pass
+
+**Severity**: Medium 
+**Priority*(if failed)**: High
+
+
+## NTC-2: Mobile Responsiveness Check
+### Test Case ID & Title: NFTC-002 - Responsive Design
+
+**Objective**: Validate mobile responsiveness across screen sizes.
+
+**Test Steps**:
+
+- Open the website on Chrome DevTools using the Device Toggle icon(responsive mode).
+
+- Test screen widths from **320px to 1440px** manually adjusting the width.
+
+- Observe how navigation and content behave at key breakpoints:
+
+   * 320px (small phones)
+   * 375px (iPhones)
+   * 414px (larger phones)
+   * 768px (tablets)
+   * 1024px+ (laptops/desktops)
+
+
+**Expected**: The layout should adjust smoothly at all breakpoints without content overlap, cutoff, or misalignment. The navigation bar should collapse appropriately on smaller screens.
+
+**Actual**: 
+**Above 750px**: Layout is responsive; navigation does not interfere with content.
+**Below 750px** (375px): Navigation bar overlaps main content, making the UI unusable on smaller devices.
+**Status**:Fail
+
+**Severity** : High
+**Priority**: Medium
+
+---
+
+## NTC-3: Screen Reader Compatibility (WCAG 2.1)
+### Test Case ID & Title: NFTC-003 - Screen Reader Support
+
+**Objective**: Ensure accessibility for visually impaired users.
+
+**Test Steps**:
+
+- Load the website on the browser
+
+- Enable screen reader (NVDA).
+
+- Navigate through website  pages.
+
+**Expected**: Proper alt text, ARIA labels, and tab order.
+
+**Actual**: All accessibility elements were present; navigation and labels were correctly announced by the screen reader.
+
+**Status**: Pass
+
+**Severity**: High
+**Priority(if failed)**: High 
+
+---
+
+## NTC-4: Keyboard Navigation Accessibility
+### Test Case ID & Title: NFTC-4 - Keyboard Navigation
+
+**Objective**: Verify all features are accessible by keyboard.
+
+**Test Steps**:
+
+- Use the Tab key to move through focusable elements.
+
+- Use Arrow keys to scroll where needed.
+
+- Use the Enter key to activate buttons.
+
+
+**Expected**: All interactive elements should be reachable and usable in a logical tab order, with clear visible focus.
+
+**Actual**: All key functions were operable via keyboard; tab order was mostly logical and usable.
+
+**Status**: Pass
+
+**Severity**: Medium
+**Priority**: Medium 
+
+---
+
+## NTC-5: Usability (Font Readability and Color Contrast)
+### Test Case ID & Title: NFTC-5 – Font Readability and Color Contrast Compliance
+
+**Objective**: Ensure UI text meets WCAG 2.1 contrast ratio and readability standards.
+
+**Test Steps**:
+
+- Load the website.
+
+- Use Chrome Dev Tools-> Lighthouse-> Accessibility to test contrast ratios between text and background.
+
+- Examine font sizes and font styles used across headings, buttons, labels, and body text using Fonts Ninja.
+
+- Identify any inconsistent or low-contrast color usage affecting readability.
+
+**Expected**: All text should meet at least 4.5:1 contrast ratio for normal text, 3:1 for bold text, the minimum font size should be 14px for optimal readability,the used font should be constant all through.
+
+**Actual**: Text appears in various colors including light greenish, ash gray, dark blue, and black.
+- The light greenish and ash gray text fail contrast requirements against the white background (contrast ratio < 4.5:1).
+
+- Some UI text (placeholders-> 1 of 3) uses a 12px font size, which may cause readability issues, especially for users with low vision.
+
+- Font families include Segoe UI, Arial, Monospace and cursive bold, creating inconsistency across UI sections.
+
+**Status**: Fail
+
+**Severity**: Medium
+**Priority**: Medium 
+
+---
+
+## NTC-6: Compatibility on Firefox, Chrome, and Edge
+### Test Case ID & Title: NFTC-6 - Cross-Browser Compatibility
+
+**Objective**: Ensure uniform functionality across modern browsers.
+
+**Test Steps**:
+
+- Open CleanCity on Chrome, Firefox, Safari, and Edge.
+
+- Verify layout, login, and dashboard features.
+
+**Expected**: Features and layout consistent.
+
+**Actual**: Firefox has styling glitches on dashboard table.
+
+**Status**: Pass
+
+**Severity**: Medium
+**Priority**: Medium
+
+---
+
+## NTC-7: Session Timeout Security
+### Test Case ID & Title: NFTC-7 - Session Expiration
+
+**Objective**: Validate automatic session logout after 10 minutes idle.
+
+**Test Steps**:
+
+- Logged in as user Clara(3:36PM-4:09PM).
+
+- Attempted to navigate through the website at 4:08PM.
+
+**Expected**: Session should expire and user logged out.
+
+**Actual**: Session persists even after 20 minutes.
+
+**Status**: Fail
+
+**Severity**: High
+**Priority**: Critical
+
+
+
+
+
 
 
 
