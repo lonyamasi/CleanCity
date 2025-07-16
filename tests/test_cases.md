@@ -191,6 +191,43 @@ Severity/Priority(if failed): High
 *** Objective: ***  Confirm pickup form validation on required fields
 
 *** Test Steps: *** 
+## TC2: Waste Management Testing
+### TCS-2: Main Operations around waste pickup and handling
+
+### TC-2.1: Pickup and Scheduled Requests Not Displayed
+
+**Objective**: Ensure that users can view, edit, or cancel their pickup requests after submission.
+
+**Test Steps**:
+
+- Register and log in as a Clara.
+
+- Navigate to the "Schedule Pickup" form.
+
+- Enter valid name, email, and waste details.
+
+- Choose a future pickup date and submit.
+
+- Click on the profile button → "My Requests".
+
+- Check if the new pickup request appears.
+
+**Expected**:
+
+Scheduled pickup is visible in the "My Requests" section with correct status and actions (edit/cancel).
+
+**Actual**:
+
+“No waste pickup requests yet” is shown; user cannot view or manage submitted requests.
+
+**Status**: Fail
+
+**Severity**: Critical
+**Priority**: High
+
+
+### TC-2.2 Validate date must be at least 24h in future
+**Objective:** Ensure that system only allows dates atleast 24h in the future
 
 - Navigate to “Schedule Pickup”
 - Leave location or waste type blank
@@ -206,6 +243,15 @@ Severity/Priority(if failed): High
 *** Objective: ***  Ensure requests persist across sessions using localStorage
 
 *** Test Steps: *** 
+- Go to the Schedule Pickup tab of the CleanCity website.
+
+- Fill in the pickup request form with name(Clara), location(Mombasa), and waste type(Recyclable).
+
+- For Preferred Pickup Date, choose a date in the past (2024-01-06).
+
+- Submit the form.
+
+**Expected Behavior**:
 
 - Submit pickup request
 - Log out or close browser
@@ -233,10 +279,18 @@ Severity/Priority(if failed): High
 *** Status: ***  Done
 *** Severity/Priority: ***  Critical
 
+**Status**: Fail 
+
+**Severity**: Critical
+**Priority** : High
+
+### TC-2.3 Duplicate Pickup Requests for Same User, Date, and Location
+**Objective**: Test that the system does not allow a user to submit multiple pickup requests for the same location and date, ensuring no scheduling conflicts or accidental duplicates
 
  ### TC-WASTE-010: Duplicate Pickup Request by Same User
 
 *** Objective: *** Verify if the system allows a user to submit two identical pickup requests
+- Submit a pickup request with user “Clara”, location “Mombasa”, date 2024-06-01 
 
 *** Test Steps: ***
 
@@ -257,6 +311,7 @@ Severity/Priority(if failed): High
 *** Severity/Priority: *** High
 
 
+**Status (Pass/Fail)**: Fail  
 
 ## DASHBOARD AND ANALYTICS – Test Cases
 
@@ -272,10 +327,22 @@ Severity/Priority(if failed): High
 *** Actual Result: ***  Profile with personalized components loads
 *** Status: *** Done
 *** Severity/Priority: *** High
+**Severity** : Major
+**Priority** : Medium
+
+### TC-2.4: Manage Pickup Requests (Modify & Cancel)
+**Objective**: Ensure that users can modify or cancel pickup requests directly from their dashboard.
 
 ### TC-DASH-002: Statistics Accuracy Based on User Activity
 
 *** Objective: *** Verify dashboard reflects correct user-generated stats
+- Log in as Clara.
+
+- Submit a pickup request (for 2025-08-09).
+
+- Navigate to the Dashboard.
+
+- Try to modify or cancel the request.
 
 *** Test Steps: ***
 
@@ -305,6 +372,10 @@ Severity/Priority(if failed): High
 ### TC-DASH-004: Leaderboard Update Based on User Actions
 
 *** Objective: *** Validate dynamic leaderboard reflects recent user performance
+ **Status (Pass/Fail)**: Fail  
+
+ **Severity** : Critical
+ **Priority** : High
 
 *** Test Steps: ***
 
@@ -315,12 +386,16 @@ Severity/Priority(if failed): High
 *** Actual Result: *** Pending
 *** Status: *** Pending
 *** Severity/Priority: *** Medium
+### TC-2.5: Track Requests Progress
 
 ### TC-DASH-005: Slow or Failed Data Fetch
 
 *** Objective: *** Observe behavior when dashboard APIs respond slowly or fail
 
 *** Test Steps: ***
+- Log in as Clara
+- Submit a pickup request
+- Refresh Dashboard 
 
 - Simulate API latency or disconnect
 - Load dashboard
@@ -329,12 +404,19 @@ Severity/Priority(if failed): High
 *** Actual Result: *** Pending
 *** Status: *** Pending
 *** Severity/Priority: *** Medium
+- Progress indicator or message alert
 
  ## CONTENT MANAGEMENT
 
 ### TC-CONTENT-001: Admin – Create Blog Article
 
 *** Objective: *** Verify admin users can successfully create and publish articles
+- There is no alert or progress indicator
+
+**Status (Pass/Fail)**: Fail 
+
+**Severity** : Major
+**Priority**: Medium
 
 *** Test Steps: ***
 
@@ -453,6 +535,12 @@ Severity/Priority(if failed): High
  ## User Management – Functional Test Cases
 
 ### TC-USER-001: Update Profile Information
+---
+
+## TC-4: Blog Filter Functionality
+### Test Case ID & Title: TC-4.1 – Blog Filter Feature
+
+**Objective**: Ensure blog category filters show relevant posts.
 
 *** Objective: *** Verify users can update their personal details successfully
 
@@ -491,6 +579,398 @@ Severity/Priority(if failed): High
 - Login and trigger actions that generate notifications
 - Open notification center
 - Mark notifications as “Read” or delete them
+- Login as Clara
+
+- Navigate to Blog section.
+
+- Select a specific Tags filter (“Recycling”).
+
+- Observe the displayed blog posts.
+
+**Expected**: Only blog posts matching the selected category should be displayed.
+
+**Actual**: All blog posts continue to appear regardless of the selected filter.
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: High
+
+---
+
+## TC-5: Community Post Visibility
+### Test Case ID & Title: TC-5.1 – Community Post Submission
+
+**Objective**: Validate that newly submitted community posts are visible.
+
+**Test Steps**:
+
+- Log in and go to the Community section.
+
+- Submit a valid new post.
+
+- Reload the community view.
+
+**Expected**: New post appears immediately under community posts.
+
+**Actual**: Post is submitted and visible after posting.
+
+**Status**: Pass
+
+**Severity**: High
+
+**Priority**: High
+
+---
+
+## TC-6: Awareness section (Quiz Score Loop Bug)
+### Test Case ID & Title: TC-6.1 – Quiz Score Reset
+
+**Objective**: Ensure the quiz resets or ends after reaching the score limit.
+
+**Test Steps**:
+
+- Login as user Clara
+
+- Start the quiz.
+
+- Answer 3 questions.
+
+- Observe if the quiz ends or restarts.
+
+**Expected**: After reaching 3/3 answers, quiz should reset or show a completion screen.
+
+**Actual**:
+Quiz continues incrementing score to 3/4, 6/6 instead of ending.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+## TC-6: Awareness section (Report Issue Redirection)
+### Test Case ID & Title: TC-6.2 – Report Issue Feedback Redirection
+
+**Objective**: Ensure logged-in users can access the report issue page.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Click the "Report Issue" button from the navigation menu.
+
+**Expected**: User is taken to the Report Issue page.
+
+**Actual**:
+User is redirected to the Feedback page.
+
+**Status**: Pass
+
+**Severity**: Medium
+
+**Priority**: High
+
+## TC-7: Feedback Validation Form 
+### Test Case ID & Title: TC-7.1 – Feedback Requires Pickup Request ID
+
+**Objective**: Ensure users must enter valid request ID to submit feedback.
+
+**Test Steps**:
+
+- Log in  as user Clara
+
+- Navigate to the Feedback section.
+
+- Enter the request ID and feedback.
+
+- Leave the request ID field blank.
+
+- Submit the form.
+
+**Expected**: Form shows an error requiring a valid request ID.
+
+**Actual**: Feedback not submitted; validation works but message is not user-friendly or intuitive.
+
+**Status**: Pass
+
+**Severity**: Minor
+
+**Priority**: Low
+
+## TC-7: Feedback Not Visible in Dashboard
+### Test Case ID & Title: TC-7.2 – Feedback Visibility
+
+**Objective**: Confirm user feedback is displayed or accessible post-submission.
+
+**Test Steps**:
+
+- Submit feedback with request ID.
+
+- Navigate to Dashboard to view.
+
+**Expected**: Feedback should be viewable in user interface.
+
+**Actual**: No feedback listing or confirmation is visible anywhere after submission.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+---
+
+## TC-7: Invalid Feedback ID
+### Test Case ID & Title: TC-7.3 – Invalid Request ID Accepted in Feedback Form
+
+**Objective**: Ensure the feedback form accepts only valid and owned request IDs.
+
+**Test Steps**:
+
+- Log in as user Clara.
+
+- Navigate to the "Feedback" section.
+
+- In the Request ID field, enter an ID like RE01234.
+
+- Enter valid feedback.
+
+- Submit the feedback form.
+
+**Expected**: System should reject the input and show an error like: "Invalid Request ID. You can only provide feedback on your own scheduled pickups."
+
+**Actual**: Feedback is accepted and saved even when the Request ID does not belong to the current user or is invalid.
+
+**Status**: Fail
+
+**Severity**: Critical
+
+**Priority**: High
+
+---
+# NON-FUNCTIONAL TEST CASES
+## NTC-1: Page Load Performance on Dashboard
+### Test Case ID & Title: NFTC-001 - Dashboard Load Performance
+
+**Objective**: Ensure dashboard loads under 2 seconds with <100 pickup requests.
+
+**Test Steps**:
+
+- Login as user Clra.
+
+- Navigate to the dashboard page.
+
+- Open Chrome DevTools → Performance tab.
+
+- Record the page load timeline.
+
+- Observe Largest Contentful Paint (LCP) time and overall load duration.
+
+**Expected**: Dashboard should load within 2 seconds.
+
+**Actual**: Load time is 1.38 seconds.
+
+**Status**: Pass
+
+**Severity**: Medium 
+
+**Priority*(if failed)**: High
+
+
+## NTC-2: Mobile Responsiveness Check
+### Test Case ID & Title: NFTC-002 - Responsive Design
+
+**Objective**: Validate mobile responsiveness across screen sizes.
+
+**Test Steps**:
+
+- Open the website on Chrome DevTools using the Device Toggle icon(responsive mode).
+
+- Test screen widths from **320px to 1440px** manually adjusting the width.
+
+- Observe how navigation and content behave at key breakpoints:
+
+   * 320px (small phones)
+   * 375px (iPhones)
+   * 414px (larger phones)
+   * 768px (tablets)
+   * 1024px+ (laptops/desktops)
+
+
+**Expected**: The layout should adjust smoothly at all breakpoints without content overlap, cutoff, or misalignment. The navigation bar should collapse appropriately on smaller screens.
+
+**Actual**: 
+**Above 750px**: Layout is responsive; navigation does not interfere with content.
+**Below 750px** (375px): Navigation bar overlaps main content, making the UI unusable on smaller devices.
+**Status**:Fail
+
+**Severity** : High
+
+**Priority**: Medium
+
+---
+
+## NTC-3: Screen Reader Compatibility (WCAG 2.1)
+### Test Case ID & Title: NFTC-003 - Screen Reader Support
+
+**Objective**: Ensure accessibility for visually impaired users.
+
+**Test Steps**:
+
+- Load the website on the browser
+
+- Enable screen reader (NVDA).
+
+- Navigate through website  pages.
+
+**Expected**: Proper alt text, ARIA labels, and tab order.
+
+**Actual**: All accessibility elements were present; navigation and labels were correctly announced by the screen reader.
+
+**Status**: Pass
+
+**Severity**: High
+
+**Priority(if failed)**: High 
+
+---
+
+## NTC-4: Keyboard Navigation Accessibility
+### Test Case ID & Title: NFTC-4 - Keyboard Navigation
+
+**Objective**: Verify all features are accessible by keyboard.
+
+**Test Steps**:
+
+- Use the Tab key to move through focusable elements.
+
+- Use Arrow keys to scroll where needed.
+
+- Use the Enter key to activate buttons.
+
+
+**Expected**: All interactive elements should be reachable and usable in a logical tab order, with clear visible focus.
+
+**Actual**: All key functions were operable via keyboard; tab order was mostly logical and usable.
+
+**Status**: Pass
+
+**Severity**: Medium
+
+**Priority**: Medium 
+
+---
+
+## NTC-5: Usability (Font Readability and Color Contrast)
+### Test Case ID & Title: NFTC-5 – Font Readability and Color Contrast Compliance
+
+**Objective**: Ensure UI text meets WCAG 2.1 contrast ratio and readability standards.
+
+**Test Steps**:
+
+- Load the website.
+
+- Use Chrome Dev Tools-> Lighthouse-> Accessibility to test contrast ratios between text and background.
+
+- Examine font sizes and font styles used across headings, buttons, labels, and body text using Fonts Ninja.
+
+- Identify any inconsistent or low-contrast color usage affecting readability.
+
+**Expected**: All text should meet at least 4.5:1 contrast ratio for normal text, 3:1 for bold text, the minimum font size should be 14px for optimal readability,the used font should be constant all through.
+
+**Actual**: Text appears in various colors including light greenish, ash gray, dark blue, and black.
+- The light greenish and ash gray text fail contrast requirements against the white background (contrast ratio < 4.5:1).
+
+- Some UI text (placeholders-> 1 of 3) uses a 12px font size, which may cause readability issues, especially for users with low vision.
+
+- Font families include Segoe UI, Arial, Monospace and cursive bold, creating inconsistency across UI sections.
+
+**Status**: Fail
+
+**Severity**: Medium
+
+**Priority**: Medium 
+
+---
+
+## NTC-6: Compatibility on Firefox, Chrome, and Edge
+### Test Case ID & Title: NFTC-6 - Cross-Browser Compatibility
+
+**Objective**: Ensure uniform functionality across modern browsers.
+
+**Test Steps**:
+
+- Open CleanCity on Chrome, Firefox, Safari, and Edge.
+
+- Verify layout, login, and dashboard features.
+
+**Expected**: Features and layout consistent.
+
+**Actual**: Firefox has styling glitches on dashboard table.
+
+**Status**: Pass
+
+**Severity**: Medium
+
+**Priority**: Medium
+
+---
+
+## NTC-7: Session Timeout Security
+### Test Case ID & Title: NFTC-7 - Session Expiration
+
+**Objective**: Validate automatic session logout after 10 minutes idle.
+
+**Test Steps**:
+
+- Logged in as user Clara(3:36PM-4:09PM).
+
+- Attempted to navigate through the website at 4:08PM.
+
+**Expected**: Session should expire and user logged out.
+
+**Actual**: Session persists even after 20 minutes.
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: Critical
+
+---
+
+## NTC-8: Login Field Persistence after Logout
+### Test Case ID & Title: NFTC-8 - Login Field Persistence After Logout
+
+**Objective**: Ensure that user login fields (email and password) are cleared after logging out to protect user privacy and session integrity.
+
+**Test Steps**:
+
+- Log in user Clara.
+
+- Navigate through the app.
+
+- Click the Logout button.
+
+- Navigate to the login page, refresh the page.
+
+- Observe whether the email and password fields are pre-filled.
+
+**Expected**: Email and password fields should be empty on the login page.
+
+**Actual**: Email and password fields remain populated after logout and refresh(Firefox browser autofills).
+
+**Status**: Fail
+
+**Severity**: High
+
+**Priority**: Critical
+
+---
+
+
 
 *** Expected Result: *** Notifications reflect correct status; unread count updates
 *** Actual Result: *** No notification is posted
